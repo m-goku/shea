@@ -1,15 +1,16 @@
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
+import Entypo from "@expo/vector-icons/Entypo";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import {
+  Modal,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-
-import CompleteModal from "./CompleteModal";
 
 function List({ label, value }: { label: string; value: any }) {
   return (
@@ -39,6 +40,43 @@ export default function DetailsCard({
   const [pFinance, setPfinance] = useState(preFinance);
   const [modal, setModal] = useState(false);
 
+  function CompleteModal({ isVisible }: { isVisible: boolean }) {
+    return (
+      <Modal
+        visible={isVisible}
+        style={styles.modal}
+        transparent
+        animationType="slide"
+      >
+        <View style={styles.modal}>
+          <View style={styles.modalView}>
+            <Entypo name="check" size={150} color={COLORS.green.extraDeep} />
+            <TouchableOpacity
+              style={styles.modalButton}
+              activeOpacity={0.7}
+              onPress={() => {
+                setModal(false);
+                router.replace({
+                  pathname: "/(tabs)/(home)/receipt",
+                  params: {
+                    id: id,
+                    name: name,
+                    community: community,
+                    preFinance: preFinance,
+                    ballance: ballance,
+                    total: total,
+                  },
+                });
+              }}
+            >
+              <Text style={styles.buttonText}>View Receipt</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    );
+  }
+
   const handleChange = (value: string) => {
     setInput(value);
 
@@ -51,7 +89,7 @@ export default function DetailsCard({
   };
   return (
     <>
-      <CompleteModal visible={modal} />
+      <CompleteModal isVisible={modal} />
       <View style={styles.container}>
         <View style={styles.detailsContainer}>
           <View style={styles.nameView}>
@@ -84,9 +122,16 @@ export default function DetailsCard({
       </View>
 
       <TouchableOpacity
-        style={styles.button}
+        style={[
+          styles.button,
+          {
+            backgroundColor:
+              total <= 0 ? COLORS.green.light : COLORS.green.deep,
+          },
+        ]}
         activeOpacity={0.7}
         onPress={() => setModal(true)}
+        disabled={total <= 0}
       >
         <Text style={styles.buttonText}>Complete</Text>
       </TouchableOpacity>
@@ -146,16 +191,25 @@ const styles = StyleSheet.create({
     borderColor: COLORS.gray.extraDeep,
   },
   buttonText: {
-    fontSize: 35,
+    fontSize: 30,
     fontWeight: "bold",
     color: "white",
   },
   button: {
     width: SCREEN.width * 0.9,
-    height: SCREEN.height * 0.07,
-    backgroundColor: COLORS.green.deep,
+    height: SCREEN.height * 0.06,
     borderRadius: 10,
     marginTop: 10,
+    elevation: 0.5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalButton: {
+    width: SCREEN.width * 0.6,
+    height: SCREEN.height * 0.06,
+    backgroundColor: COLORS.green.deep,
+    borderRadius: 10,
+    marginTop: 50,
     elevation: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -181,5 +235,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  modal: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.8)",
+  },
+  modalView: {
+    height: SCREEN.height * 0.35,
+    width: SCREEN.width * 0.8,
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -8,6 +8,7 @@ export default function HomeRoutes() {
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="transaction" options={{ headerShown: false }} />
+        <Stack.Screen name="receipt" options={{ headerShown: false }} />
       </Stack>
     </>
   );
