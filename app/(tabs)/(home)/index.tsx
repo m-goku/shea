@@ -9,10 +9,6 @@ import { COLORS } from "@/constants/Colors";
 export default function HomeScreen() {
   const [search, setSearch] = useState("");
 
-  // useEffect(() => {
-  //   setSearch("");
-  // }, [search]);
-
   const filteredFarmers = DATA.filter(
     (farmer) =>
       farmer.name.toLowerCase().includes(search.toLowerCase()) ||

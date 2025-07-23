@@ -1,0 +1,101 @@
+import { openPDF } from "@/components/OpenPdf";
+import { ReceiptFile, listSavedReceipts } from "@/components/REceiptList";
+
+import { ScreenWrapper } from "@/components/ScreenWrapper";
+import { COLORS } from "@/constants/Colors";
+import { SCREEN } from "@/constants/Screen";
+import { DATA } from "@/db/data";
+import React, { useEffect, useState } from "react";
+import {
+  Alert,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
+
+export default function index() {
+  const [search, setSearch] = useState("");
+
+  const [receipts, setReceipts] = useState<ReceiptFile[]>([]);
+
+  useEffect(() => {
+    const loadReceipts = async () => {
+      const files = await listSavedReceipts();
+      setReceipts(files);
+    };
+
+    loadReceipts();
+  }, [receipts]);
+
+  const handleOpen = async (uri: string) => {
+    try {
+      await openPDF(uri);
+    } catch (error) {
+      Alert.alert("Error", "Unable to open this file.");
+      console.error(error);
+    }
+  };
+
+  const filteredFarmers = DATA.filter(
+    (farmer) =>
+      farmer.name.toLowerCase().includes(search.toLowerCase()) ||
+      farmer.community.toLowerCase().includes(search.toLowerCase())
+  ).sort((a, b) => a.name.localeCompare(b.name));
+
+  return (
+    <ScreenWrapper>
+      <TextInput
+        style={styles.input}
+        placeholder="Search by name or community"
+        value={search}
+        onChangeText={setSearch}
+      />
+
+      {/* <FlatList
+        style={{ flex: 1 }}
+        data={filteredFarmers}
+        renderItem={(item) => <ListCard data={item.item} />}
+      /> */}
+      <FlatList
+        data={receipts}
+        keyExtractor={(item) => item.uri}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => handleOpen(item.uri)}
+            style={styles.card}
+          >
+            <Text style={styles.name}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+        ListEmptyComponent={
+          <Text style={styles.empty}>No receipts saved.</Text>
+        }
+      />
+    </ScreenWrapper>
+  );
+}
+
+const styles = StyleSheet.create({
+  input: {
+    width: SCREEN.width * 0.9,
+    height: 50,
+    borderColor: COLORS.gray.deep,
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+
+  card: {
+    padding: 12,
+    backgroundColor: "#f2f2f2",
+    marginBottom: 10,
+    borderRadius: 8,
+  },
+  name: { fontSize: 16 },
+  meta: { fontSize: 12, color: "#666" },
+  empty: { textAlign: "center", marginTop: 40, color: "#999" },
+});

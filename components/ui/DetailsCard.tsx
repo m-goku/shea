@@ -64,6 +64,7 @@ export default function DetailsCard({
                     community: community,
                     preFinance: preFinance,
                     ballance: ballance,
+                    kilograms: input,
                     total: total,
                   },
                 });

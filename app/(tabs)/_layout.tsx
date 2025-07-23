@@ -1,5 +1,6 @@
 import { COLORS } from "@/constants/Colors";
 import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
@@ -20,6 +21,19 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name="(receipts)"
+        options={{
+          title: "Receipts",
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name="receipt-outline"
+              size={30}
+              color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="(home)"
         options={{
           title: "Home",
@@ -32,6 +46,7 @@ export default function TabLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
         name="admin"
         options={{

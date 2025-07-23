@@ -1,8 +1,9 @@
+import { generateAndSaveReceipt } from "@/components/GeneratePdf";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 function List({ label, value }: { label: string; value: any }) {
   return (
@@ -14,7 +15,7 @@ function List({ label, value }: { label: string; value: any }) {
 }
 
 export default function Receipt() {
-  const { id, name, community, preFinance, ballance, total } =
+  const { id, name, community, preFinance, ballance, total, kilograms } =
     useLocalSearchParams();
   const data = {
     id: Number(id),
@@ -22,7 +23,17 @@ export default function Receipt() {
     community: String(community),
     preFinance: Number(preFinance),
     ballance: Number(ballance),
+    kilograms: Number(kilograms),
+    total: Number(total),
   };
+
+  const handleSaveReceipt = async () => {
+    console.log("1");
+    const savedUri = await generateAndSaveReceipt(data);
+    console.log("2");
+    Alert.alert("Saved!", `Receipt saved to:\n${savedUri}`);
+  };
+
   return (
     <View style={styles.main}>
       <View style={styles.container}>
@@ -32,16 +43,17 @@ export default function Receipt() {
         <List label="ID:" value={data.id} />
         <List label="Name:" value={data.name} />
         <List label="Community:" value={data.community} />
-        <List label="Pre-Finance:" value={data.preFinance} />
-        <List label="Balance:" value={data.ballance} />
-        <List label="Total:" value={total} />
+        <List label="Pre-Finance (GH₵):" value={data.preFinance} />
+        <List label="Balance (GH₵):" value={data.ballance} />
+        <List label="Weight (Kg):" value={data.kilograms} />
+        <List label="Total (GH₵):" value={data.total} />
       </View>
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.7}
-        onPress={() => {}}
+        onPress={handleSaveReceipt}
       >
-        <Text style={styles.buttonText}>Print Receipt</Text>
+        <Text style={styles.buttonText}>Save Receipt</Text>
       </TouchableOpacity>
     </View>
   );
@@ -88,6 +100,7 @@ const styles = StyleSheet.create({
     color: COLORS.gray.extraDeep,
   },
   list: {
+    marginBottom: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

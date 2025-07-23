@@ -14,7 +14,10 @@ export const ScreenWrapper: FC<SW> = ({ children }) => {
   StatusBar.currentHeight;
   return (
     <>
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{ alignItems: "center" }}
+      >
         <KeyboardAvoidingView>{children}</KeyboardAvoidingView>
       </ScrollView>
     </>
