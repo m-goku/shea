@@ -1,13 +1,17 @@
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { DATA } from "@/db/data";
-import React, { useState } from "react";
-import { FlatList, StyleSheet, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, LogBox, StyleSheet, TextInput } from "react-native";
 
 import { ListCard } from "@/components/ui/ListCard";
 import { COLORS } from "@/constants/Colors";
 
 export default function HomeScreen() {
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+  }, []);
 
   const filteredFarmers = DATA.filter(
     (farmer) =>

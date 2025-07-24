@@ -26,9 +26,13 @@ export const ListCard = ({ data }: { data: Data }) => {
       }
     >
       <View style={styles.initials}>
-        <Text style={styles.initialText}>{data.name.split("")[0]}</Text>
+        <Text style={[styles.initialText, { fontFamily: "PoppinsSemiBold" }]}>
+          {data.name.split("")[0]}
+        </Text>
       </View>
-      <Text style={styles.cardText}>{data.name}</Text>
+      <Text style={[styles.cardText, { fontFamily: "Poppins" }]}>
+        {data.name}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cardText: {
-    fontSize: 18,
+    fontSize: 20,
   },
   initials: {
     height: 40,
@@ -57,7 +61,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   initialText: {
-    fontWeight: "600",
     fontSize: 20,
   },
 });

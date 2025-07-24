@@ -16,7 +16,7 @@ export const ScreenWrapper: FC<SW> = ({ children }) => {
     <>
       <ScrollView
         style={styles.container}
-        contentContainerStyle={{ alignItems: "center" }}
+        //contentContainerStyle={{ alignItems: "center" }}
       >
         <KeyboardAvoidingView>{children}</KeyboardAvoidingView>
       </ScrollView>

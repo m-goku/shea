@@ -15,8 +15,10 @@ import {
 function List({ label, value }: { label: string; value: any }) {
   return (
     <View style={styles.list}>
-      <Text style={styles.label}>{label}</Text>
-      <Text style={styles.value}>{value} </Text>
+      <Text style={[styles.label, { fontFamily: "Poppins" }]}>{label}</Text>
+      <Text style={[styles.value, { fontFamily: "PoppinsSemiBold" }]}>
+        {value}{" "}
+      </Text>
     </View>
   );
 }
@@ -94,7 +96,9 @@ export default function DetailsCard({
       <View style={styles.container}>
         <View style={styles.detailsContainer}>
           <View style={styles.nameView}>
-            <Text style={styles.name}>{name}</Text>
+            <Text style={[styles.name, { fontFamily: "PoppinsSemiBold" }]}>
+              {name}
+            </Text>
           </View>
           <List label="ID:" value={id} />
           {/* <List label="Name:" value={name} /> */}
@@ -106,14 +110,20 @@ export default function DetailsCard({
 
       <View style={styles.container2}>
         <View style={styles.kg}>
-          <Text style={styles.label}>Total Cost (GH₵):</Text>
-          <Text style={styles.value}>{total}</Text>
+          <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+            Total Cost (GH₵):
+          </Text>
+          <Text style={[styles.value, { fontFamily: "PoppinsSemiBold" }]}>
+            {total}
+          </Text>
         </View>
         <View style={[styles.kg, { marginTop: 20 }]}>
-          <Text style={styles.label}>Weight (Kg):</Text>
+          <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+            Weight (Kg):
+          </Text>
           <View style={styles.inputView}>
             <TextInput
-              style={styles.input}
+              style={[styles.input, { fontFamily: "PoppinsSemiBold" }]}
               keyboardType="numeric"
               value={input}
               onChangeText={handleChange}
@@ -134,7 +144,9 @@ export default function DetailsCard({
         onPress={() => setModal(true)}
         disabled={total <= 0}
       >
-        <Text style={styles.buttonText}>Complete</Text>
+        <Text style={[styles.buttonText, { fontFamily: "PoppinsSemiBold" }]}>
+          Complete
+        </Text>
       </TouchableOpacity>
     </>
   );
@@ -144,7 +156,7 @@ const styles = StyleSheet.create({
   container: {
     width: SCREEN.width * 0.9,
     height: SCREEN.height * 0.4,
-    backgroundColor: COLORS.gray.light,
+    backgroundColor: COLORS.green.extraLight,
     borderRadius: 10,
     marginTop: 50,
     elevation: 1,
@@ -152,7 +164,7 @@ const styles = StyleSheet.create({
   container2: {
     width: SCREEN.width * 0.9,
     height: SCREEN.height * 0.2,
-    backgroundColor: COLORS.gray.light,
+    backgroundColor: COLORS.orange.extraLight,
     borderRadius: 10,
     marginTop: 10,
     elevation: 1,
@@ -163,27 +175,25 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    padding: 8,
   },
   label: {
-    fontSize: 18,
-    color: COLORS.gray.extraDeep,
-    fontWeight: "bold",
+    fontSize: 20,
+    color: "black",
   },
   value: {
-    fontSize: 35,
-    fontWeight: "bold",
-    color: COLORS.gray.extraDeep,
+    fontSize: 23,
+    color: "black",
   },
   name: {
-    fontSize: 35,
-    fontWeight: "bold",
-    color: COLORS.gray.extraDeep,
+    fontSize: 25,
+    color: "black",
   },
   detailsContainer: {
     padding: 20,
   },
   nameView: {
-    backgroundColor: COLORS.gray.extraLight,
+    backgroundColor: COLORS.green.light,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
@@ -192,14 +202,13 @@ const styles = StyleSheet.create({
     borderColor: COLORS.gray.extraDeep,
   },
   buttonText: {
-    fontSize: 30,
-    fontWeight: "bold",
+    fontSize: 20,
     color: "white",
   },
   button: {
     width: SCREEN.width * 0.9,
     height: SCREEN.height * 0.06,
-    borderRadius: 10,
+    borderRadius: 25,
     marginTop: 10,
     elevation: 0.5,
     justifyContent: "center",
@@ -209,7 +218,7 @@ const styles = StyleSheet.create({
     width: SCREEN.width * 0.6,
     height: SCREEN.height * 0.06,
     backgroundColor: COLORS.green.deep,
-    borderRadius: 10,
+    borderRadius: 25,
     marginTop: 50,
     elevation: 1,
     justifyContent: "center",
@@ -217,20 +226,22 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    width: 150,
+    width: 130,
     backgroundColor: COLORS.gray.extraLight,
-    fontSize: 30,
+    fontSize: 25,
     marginLeft: 10,
     borderRadius: 10,
-    fontWeight: "bold",
-    color: COLORS.gray.extraDeep,
+    color: "black",
   },
   inputView: {
-    height: 50,
+    height: 60,
     width: 150,
     backgroundColor: COLORS.gray.extraLight,
     marginLeft: 20,
     borderRadius: 10,
+    borderWidth: 0.5,
+    justifyContent: "center",
+    alignItems: "center",
   },
   kg: {
     flexDirection: "row",

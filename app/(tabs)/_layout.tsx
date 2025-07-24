@@ -21,12 +21,12 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="(receipts)"
+        name="(admin)"
         options={{
-          title: "Receipts",
+          title: "Admin",
           tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name="receipt-outline"
+            <Feather
+              name="user"
               size={30}
               color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
             />
@@ -48,12 +48,12 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="admin"
+        name="(receipts)"
         options={{
-          title: "Admin",
+          title: "Receipts",
           tabBarIcon: ({ focused }) => (
-            <Feather
-              name="user"
+            <Ionicons
+              name="receipt-outline"
               size={30}
               color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
             />

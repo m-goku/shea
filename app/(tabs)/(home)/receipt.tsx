@@ -1,9 +1,9 @@
 import { generateAndSaveReceipt } from "@/components/GeneratePdf";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
-import { useLocalSearchParams } from "expo-router";
-import React from "react";
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { router, useLocalSearchParams } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { LogBox, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 function List({ label, value }: { label: string; value: any }) {
   return (
@@ -27,35 +27,44 @@ export default function Receipt() {
     total: Number(total),
   };
 
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+  }, []);
+
+  const [isSaving, setIsSaving] = useState(false);
   const handleSaveReceipt = async () => {
-    console.log("1");
-    const savedUri = await generateAndSaveReceipt(data);
-    console.log("2");
-    Alert.alert("Saved!", `Receipt saved to:\n${savedUri}`);
+    setIsSaving(true);
+    await generateAndSaveReceipt(data);
+    router.replace("/(tabs)/(home)");
+    router.navigate("/(tabs)/(receipts)");
+    setIsSaving(false);
   };
 
   return (
-    <View style={styles.main}>
-      <View style={styles.container}>
-        <Text style={{ fontSize: 25, marginBottom: 50 }}>
-          ********* GWI/FUJi RECEIPT *********
-        </Text>
-        <List label="ID:" value={data.id} />
-        <List label="Name:" value={data.name} />
-        <List label="Community:" value={data.community} />
-        <List label="Pre-Finance (GH₵):" value={data.preFinance} />
-        <List label="Balance (GH₵):" value={data.ballance} />
-        <List label="Weight (Kg):" value={data.kilograms} />
-        <List label="Total (GH₵):" value={data.total} />
+    <>
+      <View style={styles.main}>
+        <View style={styles.container}>
+          <Text style={{ fontSize: 25, marginBottom: 50 }}>
+            ********* GWI/FUJi RECEIPT *********
+          </Text>
+          <List label="ID:" value={data.id} />
+          <List label="Name:" value={data.name} />
+          <List label="Community:" value={data.community} />
+          <List label="Pre-Finance (GH₵):" value={data.preFinance} />
+          <List label="Balance (GH₵):" value={data.ballance} />
+          <List label="Weight (Kg):" value={data.kilograms} />
+          <List label="Total (GH₵):" value={data.total} />
+        </View>
+        <TouchableOpacity
+          style={styles.button}
+          activeOpacity={0.7}
+          onPress={handleSaveReceipt}
+          disabled={isSaving}
+        >
+          <Text style={styles.buttonText}>Save Receipt</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.7}
-        onPress={handleSaveReceipt}
-      >
-        <Text style={styles.buttonText}>Save Receipt</Text>
-      </TouchableOpacity>
-    </View>
+    </>
   );
 }
 
@@ -75,14 +84,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonText: {
-    fontSize: 30,
-    fontWeight: "bold",
+    fontSize: 25,
+    fontWeight: "600",
     color: "white",
   },
   button: {
     width: SCREEN.width * 0.9,
     height: SCREEN.height * 0.06,
-    borderRadius: 10,
+    borderRadius: 25,
     marginTop: 10,
     elevation: 0.5,
     justifyContent: "center",
@@ -90,19 +99,45 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.green.deep,
   },
   label: {
-    fontSize: 18,
-    color: COLORS.gray.extraDeep,
-    fontWeight: "bold",
+    fontSize: 20,
+    color: "black",
+    fontWeight: "600",
   },
   value: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: COLORS.gray.extraDeep,
+    fontSize: 25,
+    fontWeight: "600",
+    color: "black",
   },
   list: {
     marginBottom: 10,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 8,
+  },
+  modal: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.8)",
+  },
+  modalView: {
+    height: SCREEN.height * 0.35,
+    width: SCREEN.width * 0.8,
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalButton: {
+    width: SCREEN.width * 0.6,
+    height: SCREEN.height * 0.06,
+    backgroundColor: COLORS.green.deep,
+    borderRadius: 25,
+    marginTop: 50,
+    elevation: 1,
+    justifyContent: "center",
     alignItems: "center",
   },
 });

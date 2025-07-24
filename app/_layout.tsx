@@ -6,7 +6,9 @@ import "react-native-reanimated";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Poppins: require("../assets/fonts/Poppins-Regular.ttf"),
+    PoppinsBold: require("../assets/fonts/Poppins-Bold.ttf"),
+    PoppinsSemiBold: require("../assets/fonts/Poppins-SemiBold.ttf"),
   });
 
   if (!loaded) {
@@ -23,4 +25,7 @@ export default function RootLayout() {
       <StatusBar style="auto" />
     </>
   );
+}
+function useEffect(arg0: () => void, arg1: never[]) {
+  throw new Error("Function not implemented.");
 }

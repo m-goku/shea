@@ -1,5 +1,6 @@
 import { openPDF } from "@/components/OpenPdf";
 import { ReceiptFile, listSavedReceipts } from "@/components/REceiptList";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { COLORS } from "@/constants/Colors";
@@ -9,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import {
   Alert,
   FlatList,
+  LogBox,
   StyleSheet,
   Text,
   TextInput,
@@ -28,6 +30,10 @@ export default function index() {
 
     loadReceipts();
   }, [receipts]);
+
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+  }, []);
 
   const handleOpen = async (uri: string) => {
     try {
@@ -66,7 +72,10 @@ export default function index() {
             onPress={() => handleOpen(item.uri)}
             style={styles.card}
           >
-            <Text style={styles.name}>{item.name}</Text>
+            <FontAwesome5 name="receipt" size={24} color="black" />
+            <Text style={[styles.name, { fontFamily: "Poppins" }]}>
+              {item.name}
+            </Text>
           </TouchableOpacity>
         )}
         ListEmptyComponent={
@@ -90,12 +99,18 @@ const styles = StyleSheet.create({
   },
 
   card: {
+    alignItems: "center",
+    gap: 15,
+    flexDirection: "row",
     padding: 12,
     backgroundColor: "#f2f2f2",
     marginBottom: 10,
     borderRadius: 8,
   },
-  name: { fontSize: 16 },
+  name: {
+    fontSize: 18,
+    fontWeight: "500",
+  },
   meta: { fontSize: 12, color: "#666" },
   empty: { textAlign: "center", marginTop: 40, color: "#999" },
 });
