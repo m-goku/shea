@@ -1,6 +1,8 @@
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
+import { createFarmer } from "@/db/crud";
+import { router } from "expo-router";
 import { Formik, FormikHelpers } from "formik";
 import React from "react";
 import {
@@ -17,7 +19,6 @@ interface ProfileFormValues {
   id: string;
   community: string;
   prefinance: string;
-  balance: string;
 }
 
 const validationSchema = Yup.object().shape({
@@ -40,21 +41,24 @@ const CreateProfileForm: React.FC = () => {
     id: "",
     community: "",
     prefinance: "",
-    balance: "",
   };
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: ProfileFormValues,
     actions: FormikHelpers<ProfileFormValues>
   ) => {
     const prepared = {
       ...values,
-      prefinance: values.prefinance ? parseFloat(values.prefinance) : null,
-      balance: values.balance ? parseFloat(values.balance) : null,
+      prefinance: values.prefinance ? parseFloat(values.prefinance) : 0,
     };
 
     console.log("Submitted:", prepared);
+    await createFarmer(prepared);
+    //await writeManyFarmers(DATA);
+    //await resetFarmers();
     actions.resetForm();
+    router.replace("/(tabs)/(admin)/list");
+    router.navigate("/(tabs)/(home)");
   };
 
   const renderError = (touched?: boolean, error?: string) => {
@@ -81,36 +85,46 @@ const CreateProfileForm: React.FC = () => {
         <ScreenWrapper>
           <View style={styles.container}>
             {/* Name */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>Name</Text>
             <TextInput
               placeholder="Name"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               onChangeText={handleChange("name")}
               onBlur={handleBlur("name")}
               value={values.name}
             />
 
             {/* ID */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+              ID Number
+            </Text>
             <TextInput
               placeholder="ID"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               onChangeText={handleChange("id")}
               onBlur={handleBlur("id")}
               value={values.id}
             />
 
             {/* Community */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+              Community
+            </Text>
             <TextInput
               placeholder="Community"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               onChangeText={handleChange("community")}
               onBlur={handleBlur("community")}
               value={values.community}
             />
 
             {/* Prefinance */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+              Pre-Finance Amount
+            </Text>
             <TextInput
               placeholder="Prefinance"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               keyboardType="numeric"
               onChangeText={handleChange("prefinance")}
               onBlur={handleBlur("prefinance")}
@@ -118,14 +132,17 @@ const CreateProfileForm: React.FC = () => {
             />
 
             {/* Balance */}
+            {/* <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+              Balance
+            </Text>
             <TextInput
               placeholder="Balance"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               keyboardType="numeric"
               onChangeText={handleChange("balance")}
               onBlur={handleBlur("balance")}
               value={values.balance}
-            />
+            /> */}
 
             {/* Submit */}
 
@@ -163,7 +180,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#aaa",
     borderRadius: 6,
-    padding: 12,
+    paddingHorizontal: 12,
     fontSize: 16,
   },
   error: {
@@ -182,6 +199,10 @@ const styles = StyleSheet.create({
     elevation: 0.5,
     justifyContent: "center",
     alignItems: "center",
+  },
+  label: {
+    fontSize: 16,
+    color: COLORS.gray.deep,
   },
 });
 

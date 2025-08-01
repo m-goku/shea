@@ -5,7 +5,6 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
-import { DATA } from "@/db/data";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
@@ -44,11 +43,11 @@ export default function index() {
     }
   };
 
-  const filteredFarmers = DATA.filter(
-    (farmer) =>
-      farmer.name.toLowerCase().includes(search.toLowerCase()) ||
-      farmer.community.toLowerCase().includes(search.toLowerCase())
-  ).sort((a, b) => a.name.localeCompare(b.name));
+  const filteredFarmers = receipts
+    .filter((farmer) =>
+      farmer.name.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <ScreenWrapper>
@@ -65,7 +64,7 @@ export default function index() {
         renderItem={(item) => <ListCard data={item.item} />}
       /> */}
       <FlatList
-        data={receipts}
+        data={filteredFarmers}
         keyExtractor={(item) => item.uri}
         renderItem={({ item }) => (
           <TouchableOpacity

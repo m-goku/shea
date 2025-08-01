@@ -3,7 +3,7 @@ import * as FileSystem from "expo-file-system";
 import * as Print from "expo-print";
 
 export interface ReceiptData {
-  id: number;
+  id: string;
   name: string;
   community: string;
   preFinance: number;

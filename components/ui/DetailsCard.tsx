@@ -1,22 +1,30 @@
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
-import Entypo from "@expo/vector-icons/Entypo";
+import { updateFarmer } from "@/db/crud";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
-  Modal,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import { AlertModal } from "../AlertModal";
 
 function List({ label, value }: { label: string; value: any }) {
   return (
     <View style={styles.list}>
       <Text style={[styles.label, { fontFamily: "Poppins" }]}>{label}</Text>
-      <Text style={[styles.value, { fontFamily: "PoppinsSemiBold" }]}>
+      <Text
+        style={[
+          styles.value,
+          {
+            color: label == "Balance (GH₵):" ? "red" : "black",
+            fontFamily: "PoppinsSemiBold",
+          },
+        ]}
+      >
         {value}{" "}
       </Text>
     </View>
@@ -30,7 +38,7 @@ export default function DetailsCard({
   preFinance,
   ballance,
 }: {
-  id: number;
+  id: string;
   name: string;
   community: string;
   preFinance: number;
@@ -41,44 +49,7 @@ export default function DetailsCard({
   const [accBallance, setAccBalance] = useState(ballance);
   const [pFinance, setPfinance] = useState(preFinance);
   const [modal, setModal] = useState(false);
-
-  function CompleteModal({ isVisible }: { isVisible: boolean }) {
-    return (
-      <Modal
-        visible={isVisible}
-        style={styles.modal}
-        transparent
-        animationType="slide"
-      >
-        <View style={styles.modal}>
-          <View style={styles.modalView}>
-            <Entypo name="check" size={150} color={COLORS.green.extraDeep} />
-            <TouchableOpacity
-              style={styles.modalButton}
-              activeOpacity={0.7}
-              onPress={() => {
-                setModal(false);
-                router.replace({
-                  pathname: "/(tabs)/(home)/receipt",
-                  params: {
-                    id: id,
-                    name: name,
-                    community: community,
-                    preFinance: preFinance,
-                    ballance: ballance,
-                    kilograms: input,
-                    total: total,
-                  },
-                });
-              }}
-            >
-              <Text style={styles.buttonText}>View Receipt</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-    );
-  }
+  const [payable, setPayable] = useState(0);
 
   const handleChange = (value: string) => {
     setInput(value);
@@ -90,9 +61,29 @@ export default function DetailsCard({
       setTotal(0);
     }
   };
+
+  async function handleComplete() {
+    const update = {
+      name: name,
+      community: community,
+      prefinance: preFinance,
+      balance: ballance >= total ? ballance - total : 0,
+    };
+
+    await updateFarmer(id, update);
+
+    router.replace({
+      pathname: "/(tabs)/(home)/receipt",
+      params: {
+        id: id,
+        kilograms: input,
+        total: total,
+        payable: ballance < total ? total - ballance : 0,
+      },
+    });
+  }
   return (
     <>
-      <CompleteModal isVisible={modal} />
       <View style={styles.container}>
         <View style={styles.detailsContainer}>
           <View style={styles.nameView}>
@@ -141,7 +132,14 @@ export default function DetailsCard({
           },
         ]}
         activeOpacity={0.7}
-        onPress={() => setModal(true)}
+        onPress={() => {
+          AlertModal({
+            title: "Complete Transaction?",
+            message: "Do you want to complete this Transaction?",
+            onYes: () => handleComplete(),
+            onNo: () => {},
+          });
+        }}
         disabled={total <= 0}
       >
         <Text style={[styles.buttonText, { fontFamily: "PoppinsSemiBold" }]}>
@@ -168,7 +166,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     elevation: 1,
-    padding: 20,
+    padding: 25,
   },
 
   list: {

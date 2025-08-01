@@ -4,9 +4,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
-import { Data } from "@/db/data";
+import Farmer from "@/db/model";
 
-export const ListCard = ({ data }: { data: Data }) => {
+export const ListCard = ({ data }: { data: Farmer }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.6}
@@ -16,11 +16,12 @@ export const ListCard = ({ data }: { data: Data }) => {
         router.push({
           pathname: "/(tabs)/(home)/transaction",
           params: {
-            id: data.id,
+            id: data._raw.id,
             name: data.name,
             community: data.community,
-            preFinance: data.preFinance,
-            ballance: data.ballance,
+            preFinance: data.prefinance,
+            ballance: data.balance,
+            nationalId: data.nationalId,
           },
         })
       }

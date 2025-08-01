@@ -8,14 +8,18 @@ export const createFarmer = async (data: {
   name: string;
   community: string;
   prefinance: number;
-  balance: number;
 }) => {
   await database.write(async () => {
     await farmersCollection.create((farmer) => {
+      let alpha = data.community.split("").slice(0, 3);
+      let genId =
+        alpha.join("").toUpperCase() + Math.floor(Math.random() * 1000000);
+
+      farmer._raw.id = genId;
       farmer.name = data.name;
       farmer.community = data.community;
       farmer.prefinance = data.prefinance;
-      farmer.balance = data.balance;
+      farmer.balance = data.prefinance;
     });
   });
 };

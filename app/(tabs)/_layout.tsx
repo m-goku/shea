@@ -21,19 +21,6 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="(admin)"
-        options={{
-          title: "Admin",
-          tabBarIcon: ({ focused }) => (
-            <Feather
-              name="user"
-              size={30}
-              color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="(home)"
         options={{
           title: "Home",
@@ -54,6 +41,19 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name="receipt-outline"
+              size={30}
+              color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="(admin)"
+        options={{
+          title: "Admin",
+          tabBarIcon: ({ focused }) => (
+            <Feather
+              name="user"
               size={30}
               color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
             />

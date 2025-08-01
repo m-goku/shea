@@ -1,6 +1,8 @@
 import { generateAndSaveReceipt } from "@/components/GeneratePdf";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
+import { getFarmerById } from "@/db/crud";
+import Farmer from "@/db/model";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { LogBox, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -9,27 +11,50 @@ function List({ label, value }: { label: string; value: any }) {
   return (
     <View style={styles.list}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={styles.value}>{value} </Text>
+      <Text
+        style={[
+          styles.value,
+          { color: label == "Balance (GH₵):" ? "red" : "black" },
+        ]}
+      >
+        {value}{" "}
+      </Text>
     </View>
   );
 }
 
 export default function Receipt() {
-  const { id, name, community, preFinance, ballance, total, kilograms } =
-    useLocalSearchParams();
+  const {
+    id,
+    name,
+    community,
+    preFinance,
+    ballance,
+    total,
+    kilograms,
+    payable,
+  } = useLocalSearchParams();
+  const [farmer, setFarmer] = useState<Farmer | null>();
   const data = {
-    id: Number(id),
-    name: String(name),
-    community: String(community),
-    preFinance: Number(preFinance),
-    ballance: Number(ballance),
+    id: String(id),
+    name: String(farmer?.name),
+    community: String(farmer?.community),
+    preFinance: Number(farmer?.prefinance),
+    ballance: Number(farmer?.balance),
     kilograms: Number(kilograms),
     total: Number(total),
+    payable: Number(payable),
   };
 
+  async function getFarmer() {
+    const get = await getFarmerById(data.id);
+    setFarmer(get);
+    console.log(farmer);
+  }
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-  }, []);
+    getFarmer();
+  }, [farmer]);
 
   const [isSaving, setIsSaving] = useState(false);
   const handleSaveReceipt = async () => {
@@ -47,13 +72,14 @@ export default function Receipt() {
           <Text style={{ fontSize: 25, marginBottom: 50 }}>
             ********* GWI/FUJi RECEIPT *********
           </Text>
-          <List label="ID:" value={data.id} />
-          <List label="Name:" value={data.name} />
-          <List label="Community:" value={data.community} />
-          <List label="Pre-Finance (GH₵):" value={data.preFinance} />
-          <List label="Balance (GH₵):" value={data.ballance} />
+          <List label="ID:" value={farmer?.id} />
+          <List label="Name:" value={farmer?.name} />
+          <List label="Community:" value={farmer?.community} />
+          <List label="Pre-Finance (GH₵):" value={farmer?.prefinance} />
+          <List label="Balance (GH₵):" value={farmer?.balance} />
           <List label="Weight (Kg):" value={data.kilograms} />
           <List label="Total (GH₵):" value={data.total} />
+          <List label="Amount Payable (GH₵):" value={data.payable} />
         </View>
         <TouchableOpacity
           style={styles.button}

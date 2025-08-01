@@ -1,111 +1,40 @@
 import React, { useState } from "react";
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
-import { Data } from "@/db/data";
+import { deleteFarmer } from "@/db/crud";
+import Farmer from "@/db/model";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { router } from "expo-router";
+import { AlertModal } from "../AlertModal";
 
-export const ManageCard = ({ data }: { data: Data }) => {
+export const ManageCard = ({ data }: { data: Farmer }) => {
   const [modal, setModal] = useState(false);
   const [option, setOption] = useState("");
   const [selected, setSelected] = useState("");
 
-  function ManageModal({
-    isVisible,
-    icon,
-    option,
-    message,
-    name,
-  }: {
-    isVisible: boolean;
-    icon: any;
-    option: string;
-    message: string;
-    name: string;
-  }) {
-    return (
-      <Modal
-        visible={isVisible}
-        style={styles.modal}
-        transparent
-        animationType="slide"
-      >
-        <View style={styles.modal}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalMessage}>{message}</Text>
-            <Text style={styles.modalMessageName}>{name}</Text>
-            <AntDesign
-              name={icon}
-              size={100}
-              color={option == "delete" ? "red" : COLORS.green.extraDeep}
-            />
-            <TouchableOpacity
-              style={styles.modalButton}
-              activeOpacity={0.7}
-              //   onPress={() => {
-              //     setModal(false);
-              //     router.replace({
-              //       pathname: "/(tabs)/(home)/receipt",
-              //       params: {
-              //         id: id,
-              //         name: name,
-              //         community: community,
-              //         preFinance: preFinance,
-              //         ballance: ballance,
-              //         kilograms: input,
-              //         total: total,
-              //       },
-              //     });
-              //   }}
-              onPress={() => {
-                selected == "Edit"
-                  ? console.log("Edit")
-                  : console.log("Delete");
-              }}
-            >
-              <Text style={styles.buttonText}>Yes</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[
-                styles.modalButton,
-                { backgroundColor: "red", marginTop: 5 },
-              ]}
-              activeOpacity={0.7}
-              onPress={() => {
-                setModal(false);
-                setOption("");
-              }}
-            >
-              <Text style={styles.buttonText}>No</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-    );
+  async function handleDelete(id: string) {
+    await deleteFarmer(id);
+    router.push("/(tabs)/(admin)/list");
+  }
+
+  function handleUpdate() {
+    router.push({
+      pathname: "/(tabs)/(admin)/edit",
+      params: {
+        id: data._raw.id,
+        name: data.name,
+        community: data.community,
+        preFinance: data.prefinance,
+        ballance: data.balance,
+        nationalId: data.nationalId,
+      },
+    });
   }
 
   return (
     <>
-      {option == "Edit" && (
-        <ManageModal
-          icon={"edit"}
-          isVisible={modal}
-          message="Do you want to Edit"
-          option="edit"
-          name={data.name}
-        />
-      )}
-      {option == "Delete" && (
-        <ManageModal
-          icon={"delete"}
-          isVisible={modal}
-          message="Do you want to Delete"
-          option="delete"
-          name={data.name}
-        />
-      )}
-
       <View style={styles.card} key={data.id}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View style={styles.initials}>
@@ -122,18 +51,24 @@ export const ManageCard = ({ data }: { data: Data }) => {
         <View style={styles.buttons}>
           <TouchableOpacity
             onPress={() => {
-              setOption("Edit");
-              setSelected("Edit");
-              setModal(true);
+              AlertModal({
+                title: "Edit",
+                message: `Do you want to Edit ${data.name}'s Profile?`,
+                onYes: () => handleUpdate(),
+                onNo: () => {},
+              });
             }}
           >
             <AntDesign name="edit" size={24} color="green" />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              setOption("Delete");
-              setSelected("Delete");
-              setModal(true);
+              AlertModal({
+                title: "Delete",
+                message: `Do you want to Delete ${data.name}'s Profile?`,
+                onYes: () => handleDelete(data._raw.id),
+                onNo: () => {},
+              });
             }}
           >
             <AntDesign name="delete" size={24} color="red" />

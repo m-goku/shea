@@ -6,6 +6,7 @@ export default class Farmer extends Model {
 
   @field("name") name!: string;
   @field("community") community!: string;
+  @field("nationalId") nationalId!: string;
   @field("prefinance") prefinance!: number;
   @field("balance") balance!: number;
 

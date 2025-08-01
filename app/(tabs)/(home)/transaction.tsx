@@ -7,7 +7,7 @@ import { StyleSheet, View } from "react-native";
 export default function TransactionPage() {
   const { id, name, community, preFinance, ballance } = useLocalSearchParams();
   const data = {
-    id: Number(id),
+    id: String(id),
     name: String(name),
     community: String(community),
     preFinance: Number(preFinance),

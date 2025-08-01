@@ -1,23 +1,35 @@
 import { ScreenWrapper } from "@/components/ScreenWrapper";
-import { DATA } from "@/db/data";
 import React, { useEffect, useState } from "react";
 import { FlatList, LogBox, StyleSheet, TextInput } from "react-native";
 
 import { ListCard } from "@/components/ui/ListCard";
 import { COLORS } from "@/constants/Colors";
+import { getAllFarmers } from "@/db/crud";
+import Farmer from "@/db/model";
 
 export default function HomeScreen() {
   const [search, setSearch] = useState("");
+  const [data, setData] = useState<Farmer[]>([]);
+
+  async function getData() {
+    const farmer = await getAllFarmers();
+    setData(farmer);
+    //console.log(farmer);
+  }
 
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-  }, []);
+    getData();
+    //console.log(data);
+  }, [data]);
 
-  const filteredFarmers = DATA.filter(
-    (farmer) =>
-      farmer.name.toLowerCase().includes(search.toLowerCase()) ||
-      farmer.community.toLowerCase().includes(search.toLowerCase())
-  ).sort((a, b) => a.name.localeCompare(b.name));
+  const filteredFarmers = data
+    .filter(
+      (farmer) =>
+        farmer.name.toLowerCase().includes(search.toLowerCase()) ||
+        farmer.community.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
   return (
     <ScreenWrapper>
       <TextInput

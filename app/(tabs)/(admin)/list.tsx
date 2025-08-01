@@ -1,5 +1,4 @@
 import { ScreenWrapper } from "@/components/ScreenWrapper";
-import { DATA } from "@/db/data";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import React, { useEffect, useState } from "react";
 import {
@@ -14,20 +13,31 @@ import {
 import { ManageCard } from "@/components/ui/ManageList";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
+import { getAllFarmers } from "@/db/crud";
+import Farmer from "@/db/model";
 import { router } from "expo-router";
 
 export default function HomeScreen() {
   const [search, setSearch] = useState("");
+  const [data, setData] = useState<Farmer[]>([]);
+
+  async function getData() {
+    const farmer = await getAllFarmers();
+    setData(farmer);
+  }
 
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-  }, []);
+    getData();
+  }, [data]);
 
-  const filteredFarmers = DATA.filter(
-    (farmer) =>
-      farmer.name.toLowerCase().includes(search.toLowerCase()) ||
-      farmer.community.toLowerCase().includes(search.toLowerCase())
-  ).sort((a, b) => a.name.localeCompare(b.name));
+  const filteredFarmers = data
+    .filter(
+      (farmer) =>
+        farmer.name.toLowerCase().includes(search.toLowerCase()) ||
+        farmer.community.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
   return (
     <ScreenWrapper>
       <View style={styles.searchView}>

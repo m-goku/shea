@@ -1,6 +1,8 @@
 import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
+import { updateFarmer } from "@/db/crud";
+import { router, useLocalSearchParams } from "expo-router";
 import { Formik, FormikHelpers } from "formik";
 import React from "react";
 import {
@@ -35,26 +37,37 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateProfileForm: React.FC = () => {
-  const initialValues: ProfileFormValues = {
-    name: "",
-    id: "",
-    community: "",
-    prefinance: "",
-    balance: "",
+  const { id, name, community, preFinance, ballance } = useLocalSearchParams();
+  const data = {
+    id: String(id),
+    name: String(name),
+    community: String(community),
+    preFinance: String(preFinance),
+    ballance: String(ballance),
   };
 
-  const handleSubmit = (
+  const initialValues: ProfileFormValues = {
+    id: data.id,
+    name: data.name,
+    community: data.community,
+    prefinance: data.preFinance,
+    balance: data.ballance,
+  };
+
+  const handleSubmit = async (
     values: ProfileFormValues,
     actions: FormikHelpers<ProfileFormValues>
   ) => {
     const prepared = {
       ...values,
-      prefinance: values.prefinance ? parseFloat(values.prefinance) : null,
-      balance: values.balance ? parseFloat(values.balance) : null,
+      prefinance: values.prefinance ? parseFloat(values.prefinance) : 0,
+      balance: values.balance ? parseFloat(values.balance) : 0,
     };
 
     console.log("Submitted:", prepared);
+    await updateFarmer(data.id, prepared);
     actions.resetForm();
+    router.push("/(tabs)/(admin)/list");
   };
 
   const renderError = (touched?: boolean, error?: string) => {
@@ -81,36 +94,46 @@ const CreateProfileForm: React.FC = () => {
         <ScreenWrapper>
           <View style={styles.container}>
             {/* Name */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>Name</Text>
             <TextInput
               placeholder="Name"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               onChangeText={handleChange("name")}
               onBlur={handleBlur("name")}
               value={values.name}
             />
 
             {/* ID */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+              ID Number
+            </Text>
             <TextInput
               placeholder="ID"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               onChangeText={handleChange("id")}
               onBlur={handleBlur("id")}
               value={values.id}
             />
 
             {/* Community */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+              Community
+            </Text>
             <TextInput
               placeholder="Community"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               onChangeText={handleChange("community")}
               onBlur={handleBlur("community")}
               value={values.community}
             />
 
             {/* Prefinance */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+              Pre-Finance Amount
+            </Text>
             <TextInput
               placeholder="Prefinance"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               keyboardType="numeric"
               onChangeText={handleChange("prefinance")}
               onBlur={handleBlur("prefinance")}
@@ -118,9 +141,12 @@ const CreateProfileForm: React.FC = () => {
             />
 
             {/* Balance */}
+            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
+              Balance
+            </Text>
             <TextInput
               placeholder="Balance"
-              style={styles.input}
+              style={[styles.input, { fontFamily: "Poppins" }]}
               keyboardType="numeric"
               onChangeText={handleChange("balance")}
               onBlur={handleBlur("balance")}
@@ -155,7 +181,7 @@ const CreateProfileForm: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    marginTop: 20,
     padding: 20,
     gap: 10,
   },
@@ -163,7 +189,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#aaa",
     borderRadius: 6,
-    padding: 12,
+    paddingHorizontal: 12,
     fontSize: 16,
   },
   error: {
@@ -182,6 +208,10 @@ const styles = StyleSheet.create({
     elevation: 0.5,
     justifyContent: "center",
     alignItems: "center",
+  },
+  label: {
+    fontSize: 16,
+    color: COLORS.gray.deep,
   },
 });
 

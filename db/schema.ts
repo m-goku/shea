@@ -8,6 +8,7 @@ export const mySchema = appSchema({
       columns: [
         { name: "name", type: "string" },
         { name: "community", type: "string" },
+        { name: "nationalId", type: "string" },
         { name: "prefinance", type: "number" },
         { name: "balance", type: "number" },
         { name: "created_at", type: "number" },
