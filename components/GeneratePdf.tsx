@@ -11,6 +11,7 @@ export interface ReceiptData {
   kilograms: number;
   total: number;
   date?: string;
+  payable: number;
 }
 
 export async function generateAndSaveReceipt(
@@ -24,6 +25,7 @@ export async function generateAndSaveReceipt(
     ballance,
     kilograms,
     total,
+    payable,
     date = new Date().toLocaleDateString(),
   } = data;
 
@@ -107,6 +109,9 @@ export async function generateAndSaveReceipt(
           <div class="row"><div class="label">Total (GH₵):</div><div class="value">${total.toFixed(
             2
           )}</div></div>
+            <div class="row"><div class="label">Amount Payable (GH₵):</div><div class="value">${payable.toFixed(
+              2
+            )}</div></div>
         </div>
 
       </div>
@@ -125,7 +130,7 @@ export async function generateAndSaveReceipt(
   }
 
   // 4. Move the file to that folder with a descriptive name
-  const fileName = `${name.replace(/ /g, "_")}_${Date.now()}.pdf`;
+  const fileName = `${name.trim()}_${Date.now()}.pdf`;
   const newUri = receiptsDir + fileName;
 
   await FileSystem.moveAsync({

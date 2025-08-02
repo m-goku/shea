@@ -7,6 +7,7 @@ const farmersCollection = database.get<Farmer>("farmers");
 export const createFarmer = async (data: {
   name: string;
   community: string;
+  nationalId: string;
   prefinance: number;
 }) => {
   await database.write(async () => {
@@ -17,6 +18,7 @@ export const createFarmer = async (data: {
 
       farmer._raw.id = genId;
       farmer.name = data.name;
+      farmer.nationalId = data.nationalId;
       farmer.community = data.community;
       farmer.prefinance = data.prefinance;
       farmer.balance = data.prefinance;
@@ -43,6 +45,7 @@ export const updateFarmer = async (
   id: string,
   updatedFields: Partial<{
     name: string;
+    nationalId: string;
     community: string;
     prefinance: number;
     balance: number;
@@ -54,6 +57,8 @@ export const updateFarmer = async (
   await database.write(async () => {
     await farmer.update((f) => {
       if (updatedFields.name !== undefined) f.name = updatedFields.name;
+      if (updatedFields.nationalId !== undefined)
+        f.nationalId = updatedFields.nationalId;
       if (updatedFields.community !== undefined)
         f.community = updatedFields.community;
       if (updatedFields.prefinance !== undefined)

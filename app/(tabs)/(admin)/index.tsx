@@ -3,17 +3,45 @@ import { SCREEN } from "@/constants/Screen";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import { DATA } from "@/db/data";
 import { database } from "@/db/db";
+import { writeManyFarmers } from "@/db/loadData";
+import { resetFarmers } from "@/db/reset";
 import { syncDatabase } from "@/db/syncData";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { router } from "expo-router";
 
+
+
+ //await createFarmer(prepared);
+    
+    
+
 export default function SettingsPage() {
   async function handleSync() {
     console.log("syncing..");
-    const result = await syncDatabase(database);
+    await syncDatabase(database);
+  }
+
+  async function handleLoad() {
+    try {
+      await writeManyFarmers(DATA);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      console.log("DATA LOADED SUCCESSFULLY");
+    }
+  }
+  async function handleDelete() {
+    try {
+     await resetFarmers();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      console.log("DATA DELETED SUCCESSFULLY");
+    }
   }
   return (
     <View style={styles.container}>
@@ -21,7 +49,7 @@ export default function SettingsPage() {
         <TouchableOpacity
           style={styles.options}
           activeOpacity={0.8}
-          onPress={() => handleSync}
+          onPress={() => handleSync()}
         >
           <FontAwesome5 name="sync-alt" size={24} color="black" />
           <Text style={[styles.text, { fontFamily: "Poppins" }]}>
@@ -35,7 +63,7 @@ export default function SettingsPage() {
         >
           <Feather name="users" size={24} color="black" />
           <Text style={[styles.text, { fontFamily: "Poppins" }]}>
-            Manage Lists
+            Manage Data
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -46,6 +74,26 @@ export default function SettingsPage() {
           <FontAwesome6 name="weight-scale" size={24} color="black" />
           <Text style={[styles.text, { fontFamily: "Poppins" }]}>
             Set Weight (Kg)
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.options}
+          activeOpacity={0.8}
+          onPress={() => handleLoad()}
+        >
+       
+          <Text style={[styles.text, { fontFamily: "Poppins" }]}>
+            Load
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.options}
+          activeOpacity={0.8}
+          onPress={() => handleDelete()}
+        >
+        
+          <Text style={[styles.text, { fontFamily: "Poppins" }]}>
+            Delete
           </Text>
         </TouchableOpacity>
       </View>

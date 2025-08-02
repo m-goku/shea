@@ -49,7 +49,7 @@ export default function Receipt() {
   async function getFarmer() {
     const get = await getFarmerById(data.id);
     setFarmer(get);
-    console.log(farmer);
+    //gconsole.log(farmer);
   }
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
@@ -70,11 +70,11 @@ export default function Receipt() {
       <View style={styles.main}>
         <View style={styles.container}>
           <Text style={{ fontSize: 25, marginBottom: 50 }}>
-            ********* GWI/FUJi RECEIPT *********
+            Receipt Preview
           </Text>
           <List label="ID:" value={farmer?.id} />
-          <List label="Name:" value={farmer?.name} />
-          <List label="Community:" value={farmer?.community} />
+          <List label="Name:" value={farmer?.name.slice(0, 25)} />
+          <List label="Community:" value={farmer?.community.slice(0, 15)} />
           <List label="Pre-Finance (GH₵):" value={farmer?.prefinance} />
           <List label="Balance (GH₵):" value={farmer?.balance} />
           <List label="Weight (Kg):" value={data.kilograms} />
@@ -97,12 +97,12 @@ export default function Receipt() {
 const styles = StyleSheet.create({
   container: {
     width: SCREEN.width * 0.9,
-    height: SCREEN.height * 0.6,
+    // height: SCREEN.height * 0.6,
     backgroundColor: COLORS.gray.light,
     borderRadius: 10,
-    marginTop: 50,
+    marginTop: 30,
     elevation: 1,
-    padding: 30,
+    padding: 15,
   },
   main: {
     flex: 1,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   value: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "600",
     color: "black",
   },

@@ -1,36 +1,35 @@
-import { ScreenWrapper } from "@/components/ScreenWrapper";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  LogBox,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
 import { ManageCard } from "@/components/ui/ManageList";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import { getAllFarmers } from "@/db/crud";
 import Farmer from "@/db/model";
-import { router } from "expo-router";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { router, useFocusEffect } from "expo-router";
+import React, { useState } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View
+} from "react-native";
+
+
 
 export default function HomeScreen() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState<Farmer[]>([]);
 
-  async function getData() {
-    const farmer = await getAllFarmers();
-    setData(farmer);
-  }
+    useFocusEffect(() => {
+      //LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+        const getData = async () => {
+          const farmer = await getAllFarmers();
+          setData(farmer);
+        };
+      getData()
+    });
 
-  useEffect(() => {
-    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-    getData();
-  }, [data]);
-
+  
   const filteredFarmers = data
     .filter(
       (farmer) =>
@@ -39,7 +38,13 @@ export default function HomeScreen() {
     )
     .sort((a, b) => a.name.localeCompare(b.name));
   return (
-    <ScreenWrapper>
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+       
+      }}
+    >
       <View style={styles.searchView}>
         <TextInput
           style={styles.input}
@@ -56,11 +61,15 @@ export default function HomeScreen() {
       </View>
 
       <FlatList
-        style={{ flex: 1 }}
+        contentContainerStyle={{ alignItems: "center" }}
         data={filteredFarmers}
         renderItem={(item) => <ManageCard data={item.item} />}
+        keyExtractor={(item) => item.id.toString()}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        windowSize={5}
       />
-    </ScreenWrapper>
+    </View>
   );
 }
 
@@ -93,5 +102,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
     alignItems: "center",
+    marginTop:40
   },
 });

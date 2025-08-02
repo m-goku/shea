@@ -28,7 +28,7 @@ export const ScreenWrapper: FC<SW> = ({ children }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight,
+    marginTop: StatusBar.currentHeight as number + 40,
     margin: 10,
   },
 });

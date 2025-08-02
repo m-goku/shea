@@ -8,6 +8,6 @@ export const resetFarmers = async () => {
     const deletions = allRecords.map((record) =>
       record.prepareDestroyPermanently()
     );
-    await database.batch(...deletions);
+    await database.batch(deletions);
   });
 };

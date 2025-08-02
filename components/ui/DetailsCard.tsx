@@ -2,7 +2,7 @@ import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import { updateFarmer } from "@/db/crud";
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,8 @@ import {
   View,
 } from "react-native";
 import { AlertModal } from "../AlertModal";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function List({ label, value }: { label: string; value: any }) {
   return (
@@ -34,12 +36,14 @@ function List({ label, value }: { label: string; value: any }) {
 export default function DetailsCard({
   id,
   name,
+  nationalId,
   community,
   preFinance,
   ballance,
 }: {
   id: string;
-  name: string;
+    name: string;
+  nationalId : string
   community: string;
   preFinance: number;
   ballance: number;
@@ -48,15 +52,43 @@ export default function DetailsCard({
   const [total, setTotal] = useState(0);
   const [accBallance, setAccBalance] = useState(ballance);
   const [pFinance, setPfinance] = useState(preFinance);
-  const [modal, setModal] = useState(false);
-  const [payable, setPayable] = useState(0);
+  // const [modal, setModal] = useState(false);
+  // const [payable, setPayable] = useState(0);
+
+  const [price, setPrice] = useState(0);
+
+  async function handleGet() {
+    const num = await getNumber();
+
+    if (!isNaN(num)) {
+      setPrice(num); // Replace this with your calculation
+    } else {
+      setPrice(0);
+    }
+  }
+
+  const STORAGE_KEY = "MY_NUMBER_VALUE";
+
+  const getNumber = async (): Promise<number> => {
+    try {
+      const value = await AsyncStorage.getItem(STORAGE_KEY);
+      return value ? parseFloat(value) : 0;
+    } catch (error) {
+      console.error("Failed to get number:", error);
+      return 0;
+    }
+  };
+
+  useEffect(() => {
+    handleGet();
+  }, [price]);
 
   const handleChange = (value: string) => {
     setInput(value);
 
     const number = parseFloat(value);
     if (!isNaN(number)) {
-      setTotal(number * 20); // Replace this with your calculation
+      setTotal(number * price); // Replace this with your calculation
     } else {
       setTotal(0);
     }
@@ -91,9 +123,10 @@ export default function DetailsCard({
               {name}
             </Text>
           </View>
-          <List label="ID:" value={id} />
+          <List label="User ID:" value={id} />
+          <List label="National ID:" value={nationalId} />
           {/* <List label="Name:" value={name} /> */}
-          <List label="Community:" value={community} />
+          <List label="Community:" value={community.slice(0, 15)} />
           <List label="Prefinance (GH₵):" value={pFinance} />
           <List label="Balance (GH₵):" value={accBallance} />
         </View>
@@ -180,7 +213,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   value: {
-    fontSize: 23,
+    fontSize: 20,
     color: "black",
   },
   name: {

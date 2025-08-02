@@ -6,6 +6,8 @@ import { mySchema } from "./schema";
 
 const adapter = new SQLiteAdapter({
   schema: mySchema,
+
+  dbName: "MyApp",
 });
 
 export const database = new Database({

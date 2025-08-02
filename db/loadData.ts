@@ -6,6 +6,7 @@ import Farmer from "./model";
 export interface FarmerInput {
   id?: string;
   name: string;
+  nationalId: string;
   community: string;
   prefinance: number;
 }
@@ -19,13 +20,14 @@ export const writeManyFarmers = async (farmers: FarmerInput[]) => {
         let alpha = data.community.split("").slice(0, 3);
         let genId = alpha.join("") + Math.floor(Math.random() * 1000000);
         farmer._raw.id = genId; // optional, but useful for syncing with backend
-        farmer.name = data.name;
-        farmer.community = data.community;
-        farmer.prefinance = data.prefinance;
-        farmer.balance = data.prefinance;
+        farmer.name = data.name || "";
+        farmer.nationalId = data.nationalId || "-";
+        farmer.community = data.community || "";
+        farmer.prefinance = data.prefinance || 0;
+        farmer.balance = data.prefinance || 0;
       })
     );
 
-    await database.batch(...batch);
+    await database.batch(batch);
   });
 };

@@ -43,11 +43,9 @@ export default function index() {
     }
   };
 
-  const filteredFarmers = receipts
-    .filter((farmer) =>
-      farmer.name.toLowerCase().includes(search.toLowerCase())
-    )
-    .sort((a, b) => a.name.localeCompare(b.name));
+  const filteredFarmers = receipts.filter((farmer) =>
+    farmer.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <ScreenWrapper>

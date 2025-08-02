@@ -16,14 +16,14 @@ import * as Yup from "yup";
 
 interface ProfileFormValues {
   name: string;
-  id: string;
+  nationalId: string;
   community: string;
   prefinance: string;
 }
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
-  id: Yup.string().required("ID is required"),
+  nationalId: Yup.string().required("ID is required"),
   community: Yup.string().required("Community is required"),
   prefinance: Yup.number()
     .transform((value, originalValue) => (originalValue === "" ? null : value))
@@ -38,7 +38,7 @@ const validationSchema = Yup.object().shape({
 const CreateProfileForm: React.FC = () => {
   const initialValues: ProfileFormValues = {
     name: "",
-    id: "",
+    nationalId: "",
     community: "",
     prefinance: "",
   };
@@ -54,10 +54,9 @@ const CreateProfileForm: React.FC = () => {
 
     console.log("Submitted:", prepared);
     await createFarmer(prepared);
-    //await writeManyFarmers(DATA);
-    //await resetFarmers();
+   
     actions.resetForm();
-    router.replace("/(tabs)/(admin)/list");
+    router.replace("/(tabs)/(admin)");
     router.navigate("/(tabs)/(home)");
   };
 
@@ -101,9 +100,9 @@ const CreateProfileForm: React.FC = () => {
             <TextInput
               placeholder="ID"
               style={[styles.input, { fontFamily: "Poppins" }]}
-              onChangeText={handleChange("id")}
-              onBlur={handleBlur("id")}
-              value={values.id}
+              onChangeText={handleChange("nationalId")}
+              onBlur={handleBlur("nationalId")}
+              value={values.nationalId}
             />
 
             {/* Community */}
