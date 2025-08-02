@@ -87,7 +87,11 @@ export default function Receipt() {
           onPress={handleSaveReceipt}
           disabled={isSaving}
         >
-          <Text style={styles.buttonText}>Save Receipt</Text>
+          {isSaving ? (
+            <Text style={styles.buttonText}>Saving...</Text>
+          ) : (
+            <Text style={styles.buttonText}>Save Receipt</Text>
+          )}
         </TouchableOpacity>
       </View>
     </>
@@ -98,11 +102,13 @@ const styles = StyleSheet.create({
   container: {
     width: SCREEN.width * 0.9,
     // height: SCREEN.height * 0.6,
-    backgroundColor: COLORS.gray.light,
+    backgroundColor: "white",
     borderRadius: 10,
     marginTop: 30,
     elevation: 1,
     padding: 15,
+    borderWidth: 1,
+    borderColor: COLORS.green.dark,
   },
   main: {
     flex: 1,
@@ -122,12 +128,12 @@ const styles = StyleSheet.create({
     elevation: 0.5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.green.deep,
+    backgroundColor: COLORS.green.dark,
   },
   label: {
     fontSize: 20,
     color: "black",
-    fontWeight: "600",
+    // fontWeight: "600",
   },
   value: {
     fontSize: 20,

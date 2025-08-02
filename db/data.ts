@@ -7,1245 +7,1667 @@ prefinance? : number;
 balance?: number;
 };
 
+
+
+
+ 
+
+
+
+
+
+
+
+
 export const DATA: any[] = [
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "YIRIEBO       BEBERE",
-    nationalId: "3789011443",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "SEIDU           ASETU",
-    nationalId: "3789011623",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "KAABARTO        MWINEGE",
-    nationalId: "3789012037",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "VENGAA       BAAKYIIEI",
-    nationalId: "3789011588",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "BAGUORO       POGNAA",
-    nationalId: "378911209",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "BANWIRIPUO        HANNAH",
-    nationalId: "3789011579",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "BABADIERANAA      MWINRIEKPIENGU",
-    nationalId: "3789011434",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "BAATU         TAMBUGA",
-    nationalId: "3789012028",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "KOFIA                 MWINI-AA",
-    nationalId: "3789011795",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "ATTA      KUNGSAWEKUMA",
-    nationalId: "3789011461",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "KPAKPIRI     SANGLO",
-    nationalId: "3789011254",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "DONAYIRI      BATUURO",
-    nationalId: "3789011632",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "MAYIRIKUU        DOMAH",
-    nationalId: "3789012109",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "BAYUO       YIRIEBU",
-    nationalId: "31079865",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "DERY   POGE      NOUKPA",
-    nationalId: "3789011704",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "ROSE       MINOYEL   MWINIEB",
-    nationalId: "3789011506",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "GONTO     BAWELEDOGBU",
-    nationalId: "3789011731",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "ZIEMAH      BOGIZE",
-    nationalId: "82818299",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "BORLA      NGNUNIKPIENU",
-    nationalId: "3789011164",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "BAATU      ESTHER",
-    nationalId: "49515528",
-    prefinance: 425
-  },
-  {
-    balance: 850,
-    community: "GLEGIEYIRI",
-    name: "BAPIRHNEYE    STELLA",
-    nationalId: "3789011768",
-    prefinance: 850
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "GBELIZIE      JUDITH",
-    nationalId: "3789012361",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "YIRI-EBU    JUSANG",
-    nationalId: "3789011786",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "ZIPIAH     ABELIA",
-    nationalId: "50184097",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "MANTAA     ABENA",
-    nationalId: "GHA-727556296-6",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "YIRIZEU    TUKOMWINI",
-    nationalId: "3789011777",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "BAPIRIHNEYE      ZINYINAH",
-    nationalId: "3789012191",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "NUURINAA       BAPIRHNEYE",
-    nationalId: "3789012208",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "VIIKU        POGBIERE",
-    nationalId: "3789012604",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "ATAMA    YAA  BABY",
-    nationalId: "3789011191",
-    prefinance: 425
-  },
-  {
-    balance: 850,
-    community: "GLEGIEYIRI",
-    name: "WENTUEDI    COMFORT",
-    nationalId: "GHA-72485395-0",
-    prefinance: 850
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "NUKPE   BAAFAARA",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "DAPAAH   ALICE",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "SAANGSORI  AFIA",
-    prefinance: 425
-  },
-  {
-    balance: 425,
-    community: "GLEGIEYIRI",
-    name: "GIMENSE   CHARITY",
-    prefinance: 425
-  },
+ 
    {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABUTU    MEIMUNA",
-    nationalId: "GHA-715361722-8",
-    prefinance: 425
+    balance:850,
+    community: "YIPANI",
+    name: "KAKARIBA  MARTHA",
+    prefinance:850
   },
+  
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "DAMANI    AMAMATA",
-    nationalId: "13538406",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "FULIHEE YELKURIBO",
+    nationalId: "GHA-728151202-6",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MAHAMA     RAHIMAT",
-    nationalId: "3340842394",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "MEWALA ELIZABETH",
+    nationalId: "3800016697",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "SEIDU    ARIHIMARA",
-    nationalId: "GHA-722586395-7",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "BODI JANET",
+    nationalId: "3800013555",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "IDDRISU    BARIKISU",
-    nationalId: "12290830",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DAMBA ESI",
+    nationalId: "3800016444",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "TOMAH         ZUWERATU",
-    nationalId: "GHA-722956724-4",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "SABOGU ALICE",
+    nationalId: "5686017780",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ALHAJI-NASIR      HABETA",
-    nationalId: "GHA-722790461-4",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "ENIN-ENGA BELINDA",
+    nationalId: "3800016228",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABU        RUKAYA",
-    nationalId: "GHA-715732641-6",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "GBONTAAH ALBERTINA",
+    nationalId: "380015571",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ADAMU       KUTUN",
-    nationalId: "GHA-715581310-9",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "CHRISTOPHER CECILIA",
+    nationalId: "GHA723259039-6",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "FUSEINI        MUFIDA",
-    nationalId: "GHA-715739243-7",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "ADAMS HABIBATU",
+    nationalId: "GHA-729352488-2",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "BARITUO       SURAYA",
-    nationalId: "GHA-716315646-5",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "YELBUNHU VIDA",
+    nationalId: "3800015779",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ISSAHAKU       AMAMATA",
-    nationalId: "GHA-729812002-1",
-    prefinance: 425
+    balance:1700,
+    community: "TUBANI",
+    name: "SABOGU AMANDA",
+    nationalId: "7380008563",
+    prefinance:1700
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "SEIDU         ASTER",
-    nationalId: "GHA-722659023-8",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DAMBA  SUSANA",
+    nationalId: "57702549",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-KARIM       ZAINAB",
-    nationalId: "GHA-728077438-8",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "YAHAYA COMFORT",
+    nationalId: "3800013276",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "YAKUBU         FATUMATA",
-    nationalId: "3792012042",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "THADIUS GLADYS",
+    nationalId: "7377014155",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ALHASSAN        AWUSATA",
-    nationalId: "GHA-715706330-4",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "TOOHINYE KALEONAA",
+    nationalId: "3800019063",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MAHAMA                 MARIAM",
-    nationalId: "3792011133",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "THOMAS  TIBANI",
+    nationalId: "3800017849",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "SEIDU            HABIBATA",
-    nationalId: "GHA-722813764-0",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "BIBILINAAH TENEE",
+    nationalId: "3800017452",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MOHAMMED       MUNIRA",
-    nationalId: "GHA-722928564-3",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "AABU IRENE",
+    nationalId: "3800014554",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "WAKILU           RAPHIATU",
-    nationalId: "GHA-722694876-7",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "APUORI PATIENCE",
+    nationalId: "3800012817",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "HASIMOON      MARIAMA",
-    nationalId: "3750002031",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "SUNDAY DIANA",
+    nationalId: "3800015715",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MUHAMMED     AMINATA  BAYALAMIHI",
-    nationalId: "GHA-721282569-4",
-    prefinance: 425
+    balance:1700,
+    community: "TUBANI",
+    name: "SANCHEBE JULIANA",
+    nationalId: "728160134-4",
+    prefinance:1700
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "HARUNA      IMURATA",
-    nationalId: "GHA-715600654-8",
-    prefinance: 425
+    balance:2125,
+    community: "TUBANI",
+    name: "DUGUNAA RAINA",
+    nationalId: "GHA-728150976-5",
+    prefinance:2125
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MOHAMMED       MAJIDA",
-    nationalId: "6541016447",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ANGFAARA STELLA",
+    nationalId: "3800012538",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ADAMU       ZARATU",
-    nationalId: "GHA-715523929-9",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "MWINI AUGUSTINA",
+    nationalId: "3800012971",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "TAHIRU        HELIATU",
-    nationalId: "GHA-729742204-1",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "JONAS DORA",
+    nationalId: "3800019504",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "FATAWU      FATUMATA",
-    nationalId: "3792011395",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "GORNAA MARTHA",
+    nationalId: "3800012844",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "SUMAILA       FATUMATA",
-    nationalId: "GHA-722724301-6",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ADAMA YUONI",
+    nationalId: "GHA-728096722-9",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "HAKIM       TOIBA",
-    nationalId: "GHA-722817354-5",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DAN-BOLIYENG NGMADONG",
+    nationalId: "3800014455",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "IBRAHIM       MADINATU",
-    nationalId: "98340319",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "SAADARI ESTHER",
+    nationalId: "3804009943",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MAHAMA          NAFISA",
-    nationalId: "GHA-729803979-0",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "SABOGU ANSOBO",
+    nationalId: "3800014581",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ALHASSAN      MEMUNA",
-    nationalId: "GHA-722928548-9",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "BAALAYELA THERESA",
+    nationalId: "3800012899",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "TAHIRU       FAUZIA",
-    nationalId: "GHA-722767483-6",
-    prefinance: 425
+    balance: "2975",
+    community: "TUBANI",
+    name: "MATHEW REGINA",
+    nationalId: "3800012709",
+    prefinance: "2975"
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "NUHU         SALAMATA",
-    nationalId: "GHA-722729842-7",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "SALIMA ADAMS",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "YAKUBU      BARIKISU",
-    nationalId: "GHA-722733802-2",
-    prefinance: 425
+    balance:1700,
+    community: "TUBANI",
+    name: "MATHEW BELINDA",
+    nationalId: "VOTER 3800015742",
+    prefinance:1700
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ISSAH     SAFIATA",
-    nationalId: "GHA-722732264-7",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "TIFUUHA JOYCE",
+    nationalId: "GHA-728151640-8",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "AMINU    RAHINATU",
-    nationalId: "7376004851",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "LATIF FADILA",
+    nationalId: "VOTER ID: 3800013041",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ALHASSAN    NAFISA",
-    nationalId: "GHA-722761445-4",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DOMBO LUCY",
+    nationalId: "GHA 718589416-1",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MUMUNI        SAARATU",
-    nationalId: "GHA-722731392-2",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "WULIMINGA MARGRET",
+    nationalId: "VOTER 3800017713",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "BASIT         SAWAIBATA",
-    nationalId: "GHA-722741292-0",
-    prefinance: 425
+    balance:1700,
+    community: "TUBANI",
+    name: "DONYE CHARLLOT",
+    nationalId: "GHA 728149122-0",
+    prefinance:1700
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-RAHMAN     ASAMAWU",
-    nationalId: "3792009677",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "MUSAKA POGSAA",
+    nationalId: "VOTER ID: 3800018974",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "FUSEINI       MARIJANATA",
-    nationalId: "GHA-715465492-7",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "LORI FAUSTINA",
+    nationalId: "VOTER ID: 3800012763",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "YAKUBU      HABIBA",
-    nationalId: "GHA-715667194-2",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DAMBA CYNTHIA",
+    nationalId: "VOTER: 3800017704",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "WARISU    ALIMATU",
-    nationalId: "GHA-722767626-7",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "LAZORUS JAMILA",
+    nationalId: "VOTER ID: 3800017452",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "RASHID    ZULEHA",
-    nationalId: "GHA-722819329-1",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "BAKUMA FELICIA",
+    nationalId: "VOTER ID: 380001985",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-RAHMAN      ZULFATA",
-    nationalId: "GHA-715498067-1",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "SAKINA LANGUONI",
+    nationalId: "VOTER ID: 3800016453",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ALHASSAN    ASETU",
-    nationalId: "GHA-722800157-0",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DABINE MATHILDA",
+    nationalId: "VOTER ID: 3337724245",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ISSAHAKU     KUDIRATU",
-    nationalId: "GHA-715729345-3",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "BERIYERI EUNICE",
+    nationalId: "VOTER ID: 3879040072",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "SALIFU     RASHIDA",
-    nationalId: "GHA-722798322-0",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "SAM MEMUNA",
+    nationalId: "VOTER ID: 3800016714",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "YUSSIF   MARIAM",
-    nationalId: "33194867",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "ALOZIOUS FELICIA",
+    nationalId: "VOTER ID: 380001433",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MUMUNI    SAMIA",
-    nationalId: "GHA-722586719-9",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "BOYE AKUA JOYCE",
+    nationalId: "VOTER ID: 2022025701",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-KUDUS     SAMIRA",
-    nationalId: "GHA-722899158-9",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "NUBANIE SELINA",
+    nationalId: "GHA-714824240-6",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-KARIM       MEMUNATU",
-    nationalId: "GHA-722660476-4",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ADAMS SADIA",
+    nationalId: "VOTER ID: 3800014275",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "YAKUBU       NIAMATU",
-    nationalId: "GHA-716012538-5",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "KAAHAA-NAAH AGNES",
+    nationalId: "VOTER ID: 3800014879",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "AMATU       MARIAMA",
-    nationalId: "GHA-715590129-1",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "JATOE ALIJETU",
+    nationalId: "VOTER ID: 3337729655",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "YAHAYA           HAWAWU",
-    nationalId: "3792012402",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "JATOE ALIJETU 2",
+    nationalId: "VOTER ID: 3337729655",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABASS        NAFISA",
-    nationalId: "GHA-722741471-7",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "GILBERT SHELLA",
+    nationalId: "3800018794",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MOHAMMED   ELAHAM",
-    nationalId: "GHA-722739278-1",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "DINGUYELI FELICIA",
+    nationalId: "VOTER ID: 3800017471",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-RASHID       LATIFA",
-    nationalId: "GHA-715531033-8",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "LAI PRISCILLA",
+    nationalId: "GHA- 72815616185-7",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ALHASSAN    FATUMATA    ZAHARI",
-    nationalId: "GHA-729180186-2",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "ZIEMA POGNAA",
+    nationalId: "GHA-728165270-8",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "KURI   MARIAM",
-    nationalId: "GHA-722729796-7",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "YUSSIF GRACE",
+    nationalId: "VOTER ID:3800019487",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "BASHIT    MEMUNATU",
-    nationalId: "GHA-722903477-5",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "KONYUORI PATRICIA",
+    nationalId: "VOTER ID: 3800019531",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "NUHU        AYISHA",
-    nationalId: "GHA-722661405-7",
-    prefinance: 425
+    balance:1700,
+    community: "TUBANI",
+    name: "DANBA MEMUNA",
+    nationalId: "VOTER ID: 3800017579",
+    prefinance:1700
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "NASIR      HARIJA",
-    nationalId: "GHA-715525958-9",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "BIERENYEMA KANYINAA",
+    nationalId: "VOTER ID: 3800015913",
+    prefinance:425
   },
   {
-    balance: 850,
-    community: "GORIPE-KONKORI",
-    name: "RASHEED     ASHIKA",
-    nationalId: "GHA-715509172-1",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "BAKOE FLORENCE",
+    nationalId: "VOTER ID: 5686019323",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "HAKI       ZUWERA",
-    nationalId: "GHA-722617233-7",
-    prefinance: 850
+    balance:1275,
+    community: "TUBANI",
+    name: "BANGYEGA PORTIA",
+    nationalId: "GHA- 728340474-1",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "HAKEEM        FATUMA",
-    nationalId: "6541013071",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ABRAHAMMAN WARIKIATU",
+    nationalId: "GHA-728286274-6",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "KASSIM        AWATIFU",
-    nationalId: "GHA-722987932-1",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "AMINU KUBURA",
+    nationalId: "VOTER ID: 3800019199",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "KASIM    MARIAM",
-    nationalId: "GHA-722587555-6",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "YUSSIF HABIBA",
+    nationalId: "VOTER ID:3800019298",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "SAAKA       HABIBA",
-    nationalId: "GHA-722775556-4",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "KANTUSUNG JOYCE",
+    nationalId: "NHIS NO: 33364465",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "JARIMOU        MARIAM",
-    nationalId: "GHA-715485330-6",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DAANAAH FRANCISCA",
+    nationalId: "VOTER ID: 3800016589",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "SEIDU         ADIA",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "UMARU RUKAYA",
+    nationalId: "VOTER ID: 3800016327",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "OSMAN     AMINA",
-    nationalId: "GHA-715696348-7",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "OSMAN RAMATA",
+    nationalId: "VOTER ID: 3800019235",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "KARIM     NAFISATU",
-    nationalId: "GHA-715415776-7",
-    prefinance: 425
+    balance:1700,
+    community: "TUBANI",
+    name: "SHAIBU NIEMATU",
+    nationalId: "GHA-729166214-4",
+    prefinance:1700
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-KARIM     MUSTOFIA",
-    nationalId: "GHA-729811799-3",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "GRACE SALIA",
+    nationalId: "21525238",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDULAI        MARIAM",
-    nationalId: "GHA-715520946-9",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ABU HAFISATU",
+    nationalId: "GHA-723337360-2",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ALHASSAN             AYISAH",
-    nationalId: "GHA-722980599-1",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "SAAN-YE  CYNTHIA",
+    nationalId: "VOTER ID: 3800015301",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-SALAM           SAWAIB",
-    nationalId: "GHA-722981878-8",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ATTA LYDIA",
+    nationalId: "VOTER ID: 3805014892",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "IDDRISU      LATIFATU",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "MAHAMA AMINA",
+    nationalId: "NHIS ID: 38324062",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "KASSIM   BAHAJATU",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ALEX FAUSTINA",
+    nationalId: "NIHS ID: 51488766",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "NUHU   ASANA",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "OLIMAN EFIA",
+    nationalId: "NHIS ID:",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "MAJEEDU    JULEEHA",
-    prefinance: 425
+    balance:2125,
+    community: "TUBANI",
+    name: "ANGLADAO REGINA 1",
+    nationalId: "VOTER ID: 3800015761",
+    prefinance:2125
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ABDUL-RAHAMAN   AMAMATA",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "NYAGIMA SIMON JUDITH",
+    nationalId: "VOTER ID: 3800017173",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "NAA   RAHINATU",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "SAKUUO EVELYN",
+    nationalId: "VOTER ID: 5686018960",
+    prefinance:425
   },
   {
-    balance: 850,
-    community: "GORIPE-KONKORI",
-    name: "BASHIRU   MARIA",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "DAMBIE LUCY",
+    nationalId: "VOTER ID: 3800017317",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "NUHU   NAHAJERI",
-    prefinance: 850
+    balance:425,
+    community: "TUBANI",
+    name: "CHRISTINA  ANGKONYAA",
+    nationalId: "2300017281",
+    prefinance:425
   },
   {
-     balance: 425,
-    community: "GORIPE-KONKORI",
-    name: "ISSAH   KUBURA",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "EDITH DOMA",
+    nationalId: "3800015418",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "INUSAN           NAZIFA",
-    nationalId: "GHA-722622235-7",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "SANKYEBE JUSTINA",
+    nationalId: "GHA- 728263293-0",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "INUSAH        FAIZA",
-    nationalId: "GHA-727893399-9",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "KAYENGPONO JOYCE",
+    nationalId: "GHA- 725975533-8",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "JALUU        ALIMATU",
-    nationalId: "7370000463",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "WEONAA MANSURA",
+    nationalId: "VOTER ID: 3800014383",
+    prefinance:425
   },
   {
-    balance: 850,
-    community: "GORIPE-SUKURILAI",
-    name: "SEIDU     TAMARITAMA",
-    nationalId: "GHA-715628022-1",
-    prefinance: 850
+    balance:850,
+    community: "TUBANI",
+    name: "BATIEYE ROLIA",
+    nationalId: "GHA-717355872-7",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ABDUL-GAFAR        LUBAIBA",
-    nationalId: "GHA-715542616-3",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "MASOZUMA ERNESTINA",
+    nationalId: "GHA- 727698596-3",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HARUNA     NANJIRA",
-    nationalId: "GHA-728152503-9",
-    prefinance: 425
+    balance:1275,
+    community: "TUBANI",
+    name: "ROMANUS MAVIS",
+    prefinance:1275
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HARUNA           ZULFATA",
-    nationalId: "GHA-721282756-8",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "SABOGU AJUA",
+    nationalId: "VOTER ID: 38000132331",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ADAMS      MEMUNATA",
-    nationalId: "GHA-723015518-4",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "SUMAILA  AMAMATA",
+    nationalId: "NHIS ID: 53809390",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NURIHAKI       SANDIA",
-    nationalId: "GHA-722734673-7",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "KUPO MARIAMA",
+    nationalId: "NHIS ID: 18350950",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ADAMS          MAZIATU",
-    nationalId: "GHA-720490159-7",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DAUDA  MARIJANATU",
+    nationalId: "GHA-728901170-5",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HAMZA                  HAMDIA",
-    nationalId: "GHA-715363235-9",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "MAVIS OFORIWA",
+    nationalId: "NHIS ID: 14834523",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "SALMAN         RUKAYA",
-    nationalId: "7373010811",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ROBERT AGNES",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NASEDEEN            BARATA",
-    nationalId: "GHA-715453932-1",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "GBANA ROSE",
+    nationalId: "VOTER 3800015841",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ABDUL-HAYU            LABUJA",
-    nationalId: "GHA-715655571-6",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "SHAIBU EUNICE",
+    nationalId: "VOTER 1716713860",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ZENYENI       EUNICE",
-    nationalId: "GHA-72266603-4",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "HAKIM LINDA",
+    nationalId: "VOTER :3800015814",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ISSAHAKU      NESIRATA",
-    nationalId: "GHA-722585430-2",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "SEIDU ZULIAHA",
+    nationalId: "VOTER ID:3804012264",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "SEIDU         HAWAWU",
-    nationalId: "GHA-716183737-1",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "DAKURA PAULINA",
+    nationalId: "VOTER ID:3800017831",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MUNERU       LATIFA",
-    nationalId: "GHA-715713222-4",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "INUSAH SAFIA",
+    nationalId: "VOTER ID: 3805015459",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MUJIB            NASIMA",
-    nationalId: "GHA-728265178-4",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "BENARD SAMIRA",
+    nationalId: "VOTER ID:7377003319",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MOHAMMED      LATIFAH",
-    nationalId: "GHA-715074422-2",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "ABU RUTH",
+    nationalId: "GHA-723591631-5",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "SAMIM             UBAIDA",
-    nationalId: "GHA-715716913-2",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "ANGFAARA ELIZABERTH",
+    nationalId: "VOTER ID: 3800017308",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NASAMPUO         MEMUNATU",
-    nationalId: "GHA-722796685-2",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "MASAHUDU SALAMATU",
+    nationalId: "VOTER ID:3800014681",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MOOMIN     BAHAJATU",
-    nationalId: "GHA-715717994-4",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "KWESI FELICIA",
+    nationalId: "VOTER ID: 3800014707",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MOHAMMED    RASHIDA",
-    nationalId: "GHA-715468566-6",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "SABOGU INSAAMA",
+    nationalId: "VOTER ID:3800013609",
+    prefinance:425
   },
   {
-    balance: 850,
-    community: "GORIPE-SUKURILAI",
-    name: "OSMAN       HAJID",
-    nationalId: "GHA-715517510-0",
-    prefinance: 850
+    balance:850,
+    community: "TUBANI",
+    name: "ANGLADAO 2 REGINA",
+    nationalId: "VOTER ID: 3800015761",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HAMZA                UMU-HAIRA",
-    nationalId: "GHA-715511596-8",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "SANGAPAREE CECILIA",
+    nationalId: "VOTER ID: 6918010636",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ABUBAKARI       SAWEIBATA",
-    nationalId: "GHA-715992341-9",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "BAPONO CYNTHIA",
+    nationalId: "VOTER ID:3800016642",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ABDULAI        SALIMATA",
-    nationalId: "GHA-715446852-0",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "ADAMS FADILA",
+    nationalId: "VOTER ID:3800018451",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MOHAMMED     LATIFA",
-    nationalId: "GHA-715483628-6",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "NANTAARI ADILINE",
+    nationalId: "VOTER 3800016021",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "OSMAN      ZAINAB",
-    nationalId: "90442814",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "BAGA RITA",
+    nationalId: "GHA- 717951953-5",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "YAKUBU      AYISHETU",
-    nationalId: "GHA-722665085-1",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "BA-ENIE LYDIA",
+    nationalId: "VOTER 3800018857",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MAJEED         KAREEMA",
-    nationalId: "GHA-715577685-1",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "BAMBO JOYCE",
+    nationalId: "3800017741",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NUHU      ASATA",
-    nationalId: "GHA-715455097-9",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DUGUNAA AMINA",
+    nationalId: "3800016598",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ALHASSAN     AMAMATA",
-    nationalId: "GHA-716231820-8",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "GILBERT RAINA",
+    nationalId: "GHA-716021169-7",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "WASIMDEEN    AYIMANA",
-    nationalId: "GHA-715707242-3",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "YAKUBO COMFORT",
+    nationalId: "VOTER 3800013294",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HABIBULAHI       AYISAHATU",
-    nationalId: "GHA-716313641-6",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "YELABAKYENE RITA",
+    nationalId: "VOTER 38000174334",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ALHASSAN     FATUMA",
-    nationalId: "GHA-715444795-8",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "KAALIMA KASIM",
+    nationalId: "VOTER 3800012277",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ISSAH       AKIBATU",
-    nationalId: "3781005844",
-    prefinance: 425
+    balance:850,
+    community: "TUBANI",
+    name: "DONG AUGUSTINA",
+    nationalId: "VOTER 3800014554",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NURIDEEN     HAKIMATA",
-    nationalId: "GHA-722704237-6",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "MWINEDINGU NAOMI. V",
+    nationalId: "3800015382",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NASIRDEEN        ANIMARA",
-    nationalId: "GHA-715631589-3",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "SABOGU AUGUSTINA",
+    nationalId: "3337688994",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NURA         SARIATA",
-    nationalId: "GHA-722773817-2",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "TIBANINAA MONICA",
+    nationalId: "3800018316",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NURIDEEN      UMAHAIRA",
-    nationalId: "1929023941",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "TENYERAYELA PATRICIA",
+    nationalId: "3805016368",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HAMZA           NURATU",
-    nationalId: "GHA-722813983-1",
-    prefinance: 425
+    balance:425,
+    community: "TUBANI",
+    name: "MWINE MARGERET",
+    nationalId: "GHA-7298831717-6",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MASHUD        KARIMATA",
-    nationalId: "GHA-716153958-3",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "ALUGEE   VIVIAN   KANTADI",
+    nationalId: "GHA-728642954-7",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "WASIMDEEN    HALEMA",
-    nationalId: "GHA-715656532-6",
-    prefinance: 425
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "KYUMBA   JOANA",
+    nationalId: "GHA-723641641-9",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HAKIM     NAFISATA",
-    nationalId: "GHA-721282704-9",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "DUORINAAH  FLAVIA",
+    nationalId: "GHA-723331537-2",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HARUNA       AYISHA",
-    nationalId: "GHA-715576699-3",
-    prefinance: 425
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "ANGBEBE   CORNELIA",
+    nationalId: "GHA-716290922-4",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "NURIDEEN     ALIATA",
-    nationalId: "GHA-716313371-0",
-    prefinance: 425
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "NAA   RITA",
+    nationalId: "GHA-716363386-1",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "SULEMAN        MEMUNA",
-    nationalId: "GHA-715329578-1",
-    prefinance: 425
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "GBOI MWAAYE  HELLEN",
+    nationalId: "NHIS NO:13724495",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "SALLIAH        ALIATA",
-    nationalId: "3793026578",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "AMBAA   PORDAAN",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ABDULAI      ADIA",
-    nationalId: "GHA-715518288-1",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "YENGSUMA   STELLA",
+    nationalId: "GHA-7385011717",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ISMAIL      RAFIKATA",
-    nationalId: "GHA-715466295-9",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "KUNDI   GLADYS",
+    nationalId: "GHA-7385011212",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "TAMINU     ALIMATA",
-    nationalId: "GHA-728360119-3",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "BONYEA  NAAMA",
+    nationalId: "GHA-723337920-6",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "MOGTARI     SAUDA",
-    nationalId: "GHA-715425916-8",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "ZIENIAAH  VIDA",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "ADAMS      SAHADA",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "ANTUURO MARY",
+    nationalId: "VOTER ID 7385010015",
+    prefinance:425
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "HAKIMU      MANDINA",
-    nationalId: "GHA-722726035-2",
-    prefinance: 425
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "KUNGVENG  ALICE",
+    prefinance:850
   },
   {
-    balance: 425,
-    community: "GORIPE-SUKURILAI",
-    name: "SEIDU      ALIMATA",
-    nationalId: "GHA-715455090-0",
-    prefinance: 425
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "ONSUNG  FLORENCE",
+    nationalId: "GHA-716363171-9",
+    prefinance:425
   },
-
-
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "DAINA  DAMBIIBO",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "MILLICENT BASIGU",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "TONKUNUBA  JENNIFER",
+    nationalId: "GHA-716351691-1",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "KWESI CECILIA",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "GUOLIINYE  MARY",
+    nationalId: "GHA-7385010902",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "DORSOGLA  MARY",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "ANGKAARA  JANET",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "DAMBEEBO LYDIA",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "KOGO  BELINDA",
+    nationalId: "GHA-716354113-3",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "KAANGEE JANET",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "KAMENTA  AGNES",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "BASIGI ANGNES",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "BADIEYE DORIS",
+    nationalId: "GHA-716290463-0",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "ZAMATU  BELINDA",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "TAKAARABEAN ROSE",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "BATIRE ROBINA",
+    nationalId: "VOTER: 7385010664",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "GBORIMLOAYE    COMFORT",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "AMA SUGLO",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "AKOUS SUGLO",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "DOMETIA AKOUS",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "BAHAA CHRISTIANA",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "GRACE BEMANSO",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "KAARA SUSANE",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "AMNFINA DELIFNA",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "FAUSTINA BAELNNE",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "JACKIINE  YINNAA",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "YARKYLLI DNIVGYEEMA",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "GANDAA JULIANA",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "WUMENGA THERASA",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "KOGO  REHONNA",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "MAHAMA JAMILATU",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "MWINENANAAH ERNESTINA",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "BONYE SYLVIA",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "NINTAYELLE NOBALEE",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "MODA KABIE",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "KOGO  HELLEN",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "SUGLO VERONICA",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "SUGLO PAULINA",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "Ansigeba VIDA",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "ZIEMA JANET",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "HAWA NIEFEE",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "ABINA ANGSOA",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "KOGO MARY",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "POGNAA ANTUURO",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "BASIGI EMELIA",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVELLI-KONNORI",
+    name: "GANDAA JANET",
+    nationalId: "-",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVELLI-KONNORI",
+    name: "AMINA KUKURAH",
+    nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "BAGONLURI   ENNESTINA",
+    nationalId: "GHA-723331608-9",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "NAA   EDITH SABIE",
+    nationalId: "GHA-723300330-7",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "KANYIRI   NIIRIMA",
+    nationalId: "GHA-723372225-9",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "PUUNA   MARY TAWIA",
+    nationalId: "GHA-723365343-0",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "ZIEBANNYE   FLORENCE",
+    nationalId: "GHA-723331567-5",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "NASUNG   RUFINA",
+    nationalId: "GHA-716290996-9",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "ALI   GLORIA",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "KANHAAYE   LYDIA",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "ANDAANE  SAKINA",
+    nationalId: "GHA-723331664-7",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "BATIERE   PROSPERA",
+    nationalId: "GHA-723331661-3",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "ABAWIERE   PATIENCE",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "TONGKUBA  JENNIFER",
+     nationalId: "-",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "GETRUDE SOMAKO",
+    nationalId: "GHA-716355527-1",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "EUNICE  SOYALE",
+    prefinance:425,
+     nationalId: "-",
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "BERTHA  BAGA",
+    prefinance:850,
+     nationalId: "-",
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "NAAH SABIE  MONICA",
+    prefinance:850,
+     nationalId: "-",
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "ESI  ZIEBANYE",
+    nationalId: "GHA-716351691-1",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "CELINA  PIGNAAH",
+    prefinance:850,
+     nationalId: "-",
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "ABIGAIL  VUOGANYE",
+    prefinance:425,
+     nationalId: "-",
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "SOYALA  SONVILEMA",
+    prefinance:425,
+     nationalId: "-",
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "KUUWAABONG  JACKLINE",
+    nationalId: "GHA-716290831-5",
+    prefinance:850
+  },
+  {
+    balance: "0",
+    community: "NANVILLI-DAPIENI",
+    name: "ROSE  BONSONG",
+    prefinance: "0",
+     nationalId: "-",
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "AGNES SOBAL",
+    nationalId: "GHA- 71636350-0",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "AJOA  NENUBA",
+    prefinance:425,
+     nationalId: "-",
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "DIANA  DASSAH",
+    prefinance:850,
+    nationalId: "-",
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "LYDIA  DAKURAH",
+    nationalId: "GHA- 716277249-1",
+    prefinance:850,
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "ALICE  DOMONINGE",
+    prefinance:850,
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "ENNE-ZUMA LYDIA",
+    prefinance:425,
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "PAPUNAAH FLORENCE",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "SUMANKO FLORENCE",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "SOYELE GRACE",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "SABOGI FELICIA",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "EDINA SUGLO",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "DIANA  SUGLO",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "ALICE  SUTA",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "BAVI VIDA",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "GORNAA LINDA",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "REBECCA BAGA",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "EVELYN DASSAH",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "STELLA E-NEZUMA",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "FRANCISCA ZIENA",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "SUNKARI FELICIA",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "SUNKARI MILLECENT",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "KUBO SOPHIA",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "KUBO DIEO-ERAMA",
+    prefinance:850
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "FAUSTINA KUPONG",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "SOYELLE BANNAMA",
+    prefinance:425
+  },
+  {
+    balance:850,
+    community: "NANVILLI-DAPIENI",
+    name: "TANKPARA GRACE",
+    prefinance:850
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "TONOBE PAULINA",
+    prefinance:425
+  },
+  {
+    balance:425,
+    community: "NANVILLI-DAPIENI",
+    name: "TUUMALMA KUNNAAH",
+    prefinance:425
+  }
 ];
+
+
+
+
+
+ 

@@ -2,7 +2,6 @@ import { openPDF } from "@/components/OpenPdf";
 import { ReceiptFile, listSavedReceipts } from "@/components/REceiptList";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
-import { ScreenWrapper } from "@/components/ScreenWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import React, { useEffect, useState } from "react";
@@ -10,10 +9,12 @@ import {
   Alert,
   FlatList,
   LogBox,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function index() {
@@ -43,12 +44,14 @@ export default function index() {
     }
   };
 
-  const filteredFarmers = receipts.filter((farmer) =>
-    farmer.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredFarmers = receipts
+    .filter((farmer) =>
+      farmer.name.toLowerCase().includes(search.toLowerCase())
+    )
+    .slice(0, 30);
 
   return (
-    <ScreenWrapper>
+    <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Search by name or community"
@@ -62,6 +65,7 @@ export default function index() {
         renderItem={(item) => <ListCard data={item.item} />}
       /> */}
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={filteredFarmers}
         keyExtractor={(item) => item.uri}
         renderItem={({ item }) => (
@@ -69,17 +73,25 @@ export default function index() {
             onPress={() => handleOpen(item.uri)}
             style={styles.card}
           >
-            <FontAwesome5 name="receipt" size={24} color="black" />
+            <FontAwesome5 name="receipt" size={24} color={COLORS.green.dark} />
             <Text style={[styles.name, { fontFamily: "Poppins" }]}>
               {item.name}
             </Text>
           </TouchableOpacity>
         )}
         ListEmptyComponent={
-          <Text style={styles.empty}>No receipts saved.</Text>
+          <Text
+                     style={{
+                       fontFamily: "Poppins",
+                       fontSize: 20,
+                       color: COLORS.gray.deep,
+                     }}
+                   >
+                    You Have No Receipts 
+                   </Text>
         }
       />
-    </ScreenWrapper>
+    </View>
   );
 }
 
@@ -87,12 +99,12 @@ const styles = StyleSheet.create({
   input: {
     width: SCREEN.width * 0.9,
     height: 50,
-    borderColor: COLORS.gray.deep,
-    borderWidth: 1,
+    borderColor: COLORS.green.dark,
+    borderWidth: 2,
     borderRadius: 10,
     paddingHorizontal: 15,
     marginBottom: 20,
-    marginTop: 20,
+    backgroundColor: "white",
   },
 
   card: {
@@ -110,4 +122,9 @@ const styles = StyleSheet.create({
   },
   meta: { fontSize: 12, color: "#666" },
   empty: { textAlign: "center", marginTop: 40, color: "#999" },
+  container: {
+     flex: 1,
+        marginTop: StatusBar.currentHeight as number + 40,
+        margin: 10,
+  }
 });

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FlatList, StyleSheet, TextInput, View } from "react-native";
+import React, { useCallback, useState } from "react";
+import { BackHandler, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 
 import { ListCard } from "@/components/ui/ListCard";
 import { COLORS } from "@/constants/Colors";
@@ -27,7 +27,20 @@ export default function HomeScreen() {
       getData()
   });
 
-  
+
+useFocusEffect(
+  useCallback(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => {
+        // Block back button on this screen
+        return true;
+      }
+    );
+
+    return () => backHandler.remove(); // ✅ correct cleanup
+  }, [])
+);
 
   const filteredFarmers = data
     .filter(
@@ -44,6 +57,7 @@ export default function HomeScreen() {
       style={{
         flex: 1,
         alignItems: "center",
+        backgroundColor: COLORS.gray.extraLight,
       }}
     >
       <TextInput
@@ -52,15 +66,45 @@ export default function HomeScreen() {
         value={search}
         onChangeText={setSearch}
       />
-      <FlatList
-        contentContainerStyle={{ alignItems: "center" }}
-        data={filteredFarmers}
-        renderItem={(item) => <ListCard data={item.item} />}
-        keyExtractor={(item) => item.id.toString()}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        windowSize={5}
-      />
+      {filteredFarmers.length == 0 ? (
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "Poppins",
+              fontSize: 20,
+              color: COLORS.gray.deep,
+            }}
+          >
+            No Data{" "}
+          </Text>
+          <Text
+            style={{
+              fontFamily: "Poppins",
+              fontSize: 20,
+              color: COLORS.gray.deep,
+            }}
+          >
+            Go To Admin & Sync With Database
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ alignItems: "center" }}
+          data={filteredFarmers}
+          renderItem={(item) => <ListCard data={item.item} />}
+          keyExtractor={(item) => item.id.toString()}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+          windowSize={5}
+        />
+      )}
     </View>
   );
 }
@@ -69,11 +113,12 @@ const styles = StyleSheet.create({
   input: {
     width : SCREEN.width * 0.9,
     height: 50,
-    borderColor: COLORS.gray.deep,
-    borderWidth: 1,
+    borderColor: COLORS.green.dark,
+    borderWidth: 2,
     borderRadius: 10,
     paddingHorizontal: 15,
     marginBottom: 20,
     marginTop: 60,
+    backgroundColor : "white"
   },
 });

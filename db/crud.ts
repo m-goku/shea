@@ -17,9 +17,11 @@ export const createFarmer = async (data: {
         alpha.join("").toUpperCase() + Math.floor(Math.random() * 1000000);
 
       farmer._raw.id = genId;
-      farmer.name = data.name;
+      farmer.name = data.name.replace(/\s+/g, "  ").trim();
       farmer.nationalId = data.nationalId;
-      farmer.community = data.community;
+      farmer.community = data.community
+        .replace(/\s+/g, "  ")
+        .trim();
       farmer.prefinance = data.prefinance;
       farmer.balance = data.prefinance;
     });

@@ -45,7 +45,7 @@ export const ManageCard = ({ data }: { data: Farmer }) => {
             </Text>
           </View>
           <Text style={[styles.cardText, { fontFamily: "Poppins" }]}>
-            {data.name}
+            {data.name.slice(0,20).replace(/\s+/g, '  ').trim()}
           </Text>
         </View>
         <View style={styles.buttons}>
@@ -84,13 +84,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: SCREEN.width * 0.9,
     height: 50,
-    backgroundColor: COLORS.gray.light,
+    backgroundColor: "white",
     marginVertical: 5,
     borderRadius: 5,
     padding: 5,
     alignItems: "center",
     justifyContent: "space-between",
+    elevation: 1,
   },
+ 
   cardText: {
     fontSize: 20,
   },
@@ -109,43 +111,7 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 25,
+    gap: 15,
   },
-  modal: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.8)",
-  },
-  modalView: {
-    height: SCREEN.height * 0.4,
-    width: SCREEN.width * 0.8,
-    backgroundColor: "white",
-    padding: 20,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  modalButton: {
-    width: SCREEN.width * 0.6,
-    height: SCREEN.height * 0.06,
-    backgroundColor: COLORS.green.deep,
-    borderRadius: 25,
-    marginTop: 20,
-    elevation: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    fontSize: 20,
-    color: "white",
-  },
-  modalMessage: {
-    fontSize: 20,
-    color: "red",
-  },
-  modalMessageName: {
-    fontSize: 22,
-    marginBottom: 20,
-  },
+
 });

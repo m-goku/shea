@@ -33,7 +33,8 @@ export async function syncDatabase(database: any) {
 
       pushChanges: async ({ changes, lastPulledAt }) => {
         // console.log("HIT PUSH");
-        try {
+        //backend-hnp4.onrender.com
+        https: try {
           const response = await fetch(
             `https://backend-hnp4.onrender.com/sync/push`,
             {

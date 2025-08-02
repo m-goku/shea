@@ -32,7 +32,7 @@ export const ListCard = ({ data }: { data: Farmer }) => {
         </Text>
       </View>
       <Text style={[styles.cardText, { fontFamily: "Poppins" }]}>
-        {data.name}
+        {data.name.replace(/\s+/g, "    ").trim()}
       </Text>
     </TouchableOpacity>
   );
@@ -43,11 +43,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: SCREEN.width * 0.9,
     height: 50,
-    backgroundColor: COLORS.gray.light,
+    backgroundColor: "white",
     marginVertical: 5,
     borderRadius: 5,
     padding: 5,
     alignItems: "center",
+    elevation:1
   },
   cardText: {
     fontSize: 20,

@@ -164,6 +164,6 @@ const styles = StyleSheet.create({
     elevation: 0.5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.green.deep,
+     backgroundColor: COLORS.green.dark,
   },
 });

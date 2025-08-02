@@ -1,5 +1,4 @@
 import { COLORS } from "@/constants/Colors";
-import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 import React from "react";
@@ -8,9 +7,11 @@ import { Platform } from "react-native";
 export default function TabLayout() {
   return (
     <Tabs
+      initialRouteName="(home)"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: COLORS.gray.extraDeep,
+        animation: "none",
+        tabBarActiveTintColor: COLORS.green.dark,
         tabBarStyle: Platform.select({
           ios: {
             // Use a transparent background on iOS to show the blur effect
@@ -21,14 +22,21 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
+        name="index"
+        options={{
+          href: null,
+          title: "Index",
+        }}
+      />
+      <Tabs.Screen
         name="(home)"
         options={{
           title: "Home",
           tabBarIcon: ({ focused }) => (
-            <Feather
-              name="home"
+            <Ionicons
+              name={focused ? "home" : "home-outline"}
               size={30}
-              color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
+              color={focused ? COLORS.green.dark : COLORS.gray.normal}
             />
           ),
         }}
@@ -40,9 +48,9 @@ export default function TabLayout() {
           title: "Receipts",
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name="receipt-outline"
+              name={focused ? "receipt" : "receipt-outline"}
               size={30}
-              color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
+              color={focused ? COLORS.green.dark : COLORS.gray.normal}
             />
           ),
         }}
@@ -52,10 +60,10 @@ export default function TabLayout() {
         options={{
           title: "Admin",
           tabBarIcon: ({ focused }) => (
-            <Feather
-              name="user"
+            <Ionicons
+              name={focused ? "person" : "person-outline"}
               size={30}
-              color={focused ? COLORS.gray.extraDeep : COLORS.gray.normal}
+              color={focused ? COLORS.green.dark : COLORS.gray.normal}
             />
           ),
         }}

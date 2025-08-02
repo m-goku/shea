@@ -92,6 +92,9 @@ const CreateProfileForm: React.FC = () => {
         dirty,
       }) => (
         <ScreenWrapper>
+            <View style={styles.title}>
+                      <Text style={styles.titleText}>Add Data</Text>
+                    </View>
           <View style={styles.container}>
             {/* Name */}
             <Text style={[styles.label, { fontFamily: "Poppins" }]}>Name</Text>
@@ -159,7 +162,7 @@ const CreateProfileForm: React.FC = () => {
               style={[
                 styles.button,
                 {
-                  backgroundColor: COLORS.green.deep,
+                   backgroundColor: COLORS.green.dark,
                 },
               ]}
               activeOpacity={0.7}
@@ -181,13 +184,19 @@ const CreateProfileForm: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    // marginTop: 20,
     padding: 20,
     gap: 10,
   },
+  title: {
+    padding: 20,
+  },
+  titleText: {
+    fontSize: 25,
+  },
   input: {
     borderWidth: 1,
-    borderColor: "#aaa",
+    borderColor: COLORS.green.dark,
     borderRadius: 6,
     paddingHorizontal: 12,
     fontSize: 16,
@@ -211,7 +220,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: COLORS.gray.deep,
+    color: COLORS.green.dark,
   },
 });
 

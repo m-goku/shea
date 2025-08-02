@@ -120,13 +120,16 @@ export default function DetailsCard({
         <View style={styles.detailsContainer}>
           <View style={styles.nameView}>
             <Text style={[styles.name, { fontFamily: "PoppinsSemiBold" }]}>
-              {name}
+              {name.replace(/\s+/g, "    ").trim()}
             </Text>
           </View>
           <List label="User ID:" value={id} />
           <List label="National ID:" value={nationalId} />
           {/* <List label="Name:" value={name} /> */}
-          <List label="Community:" value={community.slice(0, 15)} />
+          <List
+            label="Community:"
+            value={community.slice(0, 15).replace(/\s+/g, " ").trim()}
+          />
           <List label="Prefinance (GH₵):" value={pFinance} />
           <List label="Balance (GH₵):" value={accBallance} />
         </View>
@@ -161,7 +164,7 @@ export default function DetailsCard({
           styles.button,
           {
             backgroundColor:
-              total <= 0 ? COLORS.green.light : COLORS.green.deep,
+              total <= 0 ? COLORS.gray.extraDeep : COLORS.green.dark,
           },
         ]}
         activeOpacity={0.7}
@@ -187,19 +190,23 @@ const styles = StyleSheet.create({
   container: {
     width: SCREEN.width * 0.9,
     height: SCREEN.height * 0.4,
-    backgroundColor: COLORS.green.extraLight,
+    backgroundColor: "white",
     borderRadius: 10,
-    marginTop: 50,
+    marginTop: 20,
     elevation: 1,
+    borderWidth: 1,
+    borderColor: COLORS.green.dark,
   },
   container2: {
     width: SCREEN.width * 0.9,
     height: SCREEN.height * 0.2,
-    backgroundColor: COLORS.orange.extraLight,
+    backgroundColor: "white",
     borderRadius: 10,
     marginTop: 10,
     elevation: 1,
     padding: 25,
+    borderWidth: 1,
+    borderColor: COLORS.green.dark,
   },
 
   list: {
@@ -224,12 +231,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   nameView: {
-    backgroundColor: COLORS.green.light,
+    backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20,
-    borderRadius: 10,
-    borderWidth: 1,
     borderColor: COLORS.gray.extraDeep,
   },
   buttonText: {
@@ -248,7 +253,7 @@ const styles = StyleSheet.create({
   modalButton: {
     width: SCREEN.width * 0.6,
     height: SCREEN.height * 0.06,
-    backgroundColor: COLORS.green.deep,
+    backgroundColor: COLORS.green.dark,
     borderRadius: 25,
     marginTop: 50,
     elevation: 1,

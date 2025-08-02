@@ -36,13 +36,13 @@ export default function HomeScreen() {
         farmer.name.toLowerCase().includes(search.toLowerCase()) ||
         farmer.community.toLowerCase().includes(search.toLowerCase())
     )
+    .slice(0, 30)
     .sort((a, b) => a.name.localeCompare(b.name));
   return (
     <View
       style={{
         flex: 1,
         alignItems: "center",
-       
       }}
     >
       <View style={styles.searchView}>
@@ -56,11 +56,12 @@ export default function HomeScreen() {
           style={styles.addButton}
           onPress={() => router.push("/(tabs)/(admin)/add")}
         >
-          <AntDesign name="adduser" size={30} color="black" />
+          <AntDesign name="adduser" size={30} color="white" />
         </TouchableOpacity>
       </View>
 
       <FlatList
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ alignItems: "center" }}
         data={filteredFarmers}
         renderItem={(item) => <ManageCard data={item.item} />}
@@ -77,23 +78,26 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     width: SCREEN.width * 0.7,
-    borderColor: COLORS.gray.deep,
-    borderWidth: 1,
+    borderColor: COLORS.green.dark,
+    borderWidth: 2,
     borderRadius: 10,
     paddingHorizontal: 15,
     marginBottom: 20,
     marginTop: 10,
+    backgroundColor: "white",
   },
+
+
   addText: {
     fontSize: 20,
   },
   addButton: {
-    height: 50,
+    height: 45,
     width: SCREEN.width * 0.2,
-    backgroundColor: COLORS.green.light,
+    backgroundColor: COLORS.green.dark,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: 10,
     marginBottom: 20,
     marginTop: 10,
   },
@@ -102,6 +106,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
     alignItems: "center",
-    marginTop:40
+    marginTop: 40,
   },
 });
