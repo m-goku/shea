@@ -1,6 +1,13 @@
 import { SCREEN } from "@/constants/Screen";
 import React from "react";
-import { ActivityIndicator, Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { COLORS } from "@/constants/Colors";
 import { database } from "@/db/db";
@@ -10,42 +17,38 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { router } from "expo-router";
 
-
-
-const LoadingModal = ({loading}:{loading : boolean}) => {
+const LoadingModal = ({ loading }: { loading: boolean }) => {
   return (
     <Modal transparent visible={loading} style={styles.modal}>
       <View style={styles.modalView}>
         <ActivityIndicator animating={loading} size={50} />
-        <Text style={{
-          fontFamily: "Poppins",
-          fontSize: 20,
-          color: "black"
-        }}>Syncing...</Text>
+        <Text
+          style={{
+            fontFamily: "Poppins",
+            fontSize: 20,
+            color: "black",
+          }}
+        >
+          Syncing...
+        </Text>
       </View>
     </Modal>
   );
- }
-    
-    
+};
 
 export default function SettingsPage() {
-
-
-const [isLoading,setIsloading]= React.useState(false)
-
+  const [isLoading, setIsloading] = React.useState(false);
 
   async function handleSync() {
     setIsloading(true);
     try {
-       await syncDatabase(database);
+      await syncDatabase(database);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setIsloading(false);
     } finally {
-      setIsloading(false); 
+      setIsloading(false);
     }
-   
   }
 
   // async function handleLoad() {
@@ -55,11 +58,11 @@ const [isLoading,setIsloading]= React.useState(false)
   //     console.log(err);
   //   } finally {
   //     console.log("DATA LOADED SUCCESSFULLY");
-  //  }
+  //   }
   // }
   // async function handleDelete() {
   //   try {
-  //    await resetFarmers();
+  //     await resetFarmers();
   //   } catch (err) {
   //     console.log(err);
   //   } finally {
@@ -77,7 +80,10 @@ const [isLoading,setIsloading]= React.useState(false)
             onPress={() => handleSync()}
           >
             <FontAwesome5 name="sync-alt" size={24} color={COLORS.green.dark} />
-            <Text style={[styles.text, { fontFamily: "Poppins" }]}>
+            <Text
+              allowFontScaling={false}
+              style={[styles.text, { fontFamily: "Poppins" }]}
+            >
               Sync with Database
             </Text>
           </TouchableOpacity>
@@ -87,7 +93,10 @@ const [isLoading,setIsloading]= React.useState(false)
             onPress={() => router.push("/(tabs)/(admin)/list")}
           >
             <Feather name="users" size={24} color={COLORS.green.dark} />
-            <Text style={[styles.text, { fontFamily: "Poppins" }]}>
+            <Text
+              allowFontScaling={false}
+              style={[styles.text, { fontFamily: "Poppins" }]}
+            >
               Manage Data
             </Text>
           </TouchableOpacity>
@@ -101,7 +110,10 @@ const [isLoading,setIsloading]= React.useState(false)
               size={24}
               color={COLORS.green.dark}
             />
-            <Text style={[styles.text, { fontFamily: "Poppins" }]}>
+            <Text
+              allowFontScaling={false}
+              style={[styles.text, { fontFamily: "Poppins" }]}
+            >
               Set Weight (Kg)
             </Text>
           </TouchableOpacity>
@@ -110,14 +122,24 @@ const [isLoading,setIsloading]= React.useState(false)
             activeOpacity={0.8}
             onPress={() => handleLoad()}
           >
-            <Text style={[styles.text, { fontFamily: "Poppins" }]}>Load</Text>
+            <Text
+              allowFontScaling={false}
+              style={[styles.text, { fontFamily: "Poppins" }]}
+            >
+              Load
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.options}
             activeOpacity={0.8}
             onPress={() => handleDelete()}
           >
-            <Text style={[styles.text, { fontFamily: "Poppins" }]}>Delete</Text>
+            <Text
+              allowFontScaling={false}
+              style={[styles.text, { fontFamily: "Poppins" }]}
+            >
+              Delete
+            </Text>
           </TouchableOpacity> */}
         </View>
       </View>
@@ -130,7 +152,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     marginTop: 50,
-
   },
   options: {
     flexDirection: "row",
@@ -142,7 +163,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginVertical: 10,
     borderRadius: 10,
-    elevation:1
+    elevation: 1,
   },
   text: {
     fontSize: 20,
@@ -156,6 +177,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor : "rgba(0,0,0,0.3)"
+    backgroundColor: "rgba(0,0,0,0.3)",
   },
 });

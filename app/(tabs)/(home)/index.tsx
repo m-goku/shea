@@ -1,7 +1,15 @@
 import React, { useCallback, useState } from "react";
-import { BackHandler, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  BackHandler,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import { ListCard } from "@/components/ui/ListCard";
+import { PlainWrapper } from "@/components/ui/wrappers/PlainWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import { getAllFarmers } from "@/db/crud";
@@ -20,27 +28,26 @@ export default function HomeScreen() {
 
   useFocusEffect(() => {
     //LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-      const getData = async () => {
-        const farmer = await getAllFarmers();
-        setData(farmer);
-      };
-      getData()
+    const getData = async () => {
+      const farmer = await getAllFarmers();
+      setData(farmer);
+    };
+    getData();
   });
 
+  useFocusEffect(
+    useCallback(() => {
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        () => {
+          // Block back button on this screen
+          return true;
+        }
+      );
 
-useFocusEffect(
-  useCallback(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      () => {
-        // Block back button on this screen
-        return true;
-      }
-    );
-
-    return () => backHandler.remove(); // ✅ correct cleanup
-  }, [])
-);
+      return () => backHandler.remove(); // ✅ correct cleanup
+    }, [])
+  );
 
   const filteredFarmers = data
     .filter(
@@ -50,68 +57,72 @@ useFocusEffect(
     )
     .slice(0, 30)
     .sort((a, b) => a.name.localeCompare(b.name));
-    ;
   //const displayData = filteredFarmers.slice(0, 30);
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        backgroundColor: COLORS.gray.extraLight,
-      }}
-    >
-      <TextInput
-        style={styles.input}
-        placeholder="Search by name or community"
-        value={search}
-        onChangeText={setSearch}
-      />
-      {filteredFarmers.length == 0 ? (
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            flex: 1,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "Poppins",
-              fontSize: 20,
-              color: COLORS.gray.deep,
-            }}
-          >
-            No Data{" "}
-          </Text>
-          <Text
-            style={{
-              fontFamily: "Poppins",
-              fontSize: 20,
-              color: COLORS.gray.deep,
-            }}
-          >
-            Go To Admin & Sync With Database
-          </Text>
-        </View>
-      ) : (
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ alignItems: "center" }}
-          data={filteredFarmers}
-          renderItem={(item) => <ListCard data={item.item} />}
-          keyExtractor={(item) => item.id.toString()}
-          initialNumToRender={10}
-          maxToRenderPerBatch={10}
-          windowSize={5}
+    <PlainWrapper>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          backgroundColor: COLORS.gray.extraLight,
+        }}
+      >
+        <TextInput
+          allowFontScaling={false}
+          style={styles.input}
+          placeholder="Search by name or community"
+          value={search}
+          onChangeText={setSearch}
         />
-      )}
-    </View>
+        {filteredFarmers.length == 0 ? (
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              flex: 1,
+            }}
+          >
+            <Text
+              allowFontScaling={false}
+              style={{
+                fontFamily: "Poppins",
+                fontSize: 20,
+                color: COLORS.gray.deep,
+              }}
+            >
+              No Data{" "}
+            </Text>
+            <Text
+              allowFontScaling={false}
+              style={{
+                fontFamily: "Poppins",
+                fontSize: 20,
+                color: COLORS.gray.deep,
+              }}
+            >
+              Go To Admin & Sync With Database
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ alignItems: "center" }}
+            data={filteredFarmers}
+            renderItem={(item) => <ListCard data={item.item} />}
+            keyExtractor={(item) => item.id.toString()}
+            initialNumToRender={10}
+            maxToRenderPerBatch={10}
+            windowSize={5}
+          />
+        )}
+      </View>
+    </PlainWrapper>
   );
 }
 
 const styles = StyleSheet.create({
   input: {
-    width : SCREEN.width * 0.9,
+    width: SCREEN.width * 0.9,
     height: 50,
     borderColor: COLORS.green.dark,
     borderWidth: 2,
@@ -119,6 +130,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 20,
     marginTop: 60,
-    backgroundColor : "white"
+    backgroundColor: "white",
   },
 });

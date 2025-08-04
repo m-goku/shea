@@ -1,5 +1,5 @@
-import { ScreenWrapper } from "@/components/ScreenWrapper";
 import DetailsCard from "@/components/ui/DetailsCard";
+import { ScreenWrapper } from "@/components/ui/wrappers/ScreenWrapper";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 import { StyleSheet, View } from "react-native";
@@ -34,5 +34,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    marginTop : 50
   },
 });

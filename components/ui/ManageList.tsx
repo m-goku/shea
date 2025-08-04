@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { COLORS } from "@/constants/Colors";
@@ -10,10 +10,6 @@ import { router } from "expo-router";
 import { AlertModal } from "../AlertModal";
 
 export const ManageCard = ({ data }: { data: Farmer }) => {
-  const [modal, setModal] = useState(false);
-  const [option, setOption] = useState("");
-  const [selected, setSelected] = useState("");
-
   async function handleDelete(id: string) {
     await deleteFarmer(id);
     router.push("/(tabs)/(admin)/list");
@@ -39,13 +35,17 @@ export const ManageCard = ({ data }: { data: Farmer }) => {
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View style={styles.initials}>
             <Text
+              allowFontScaling={false}
               style={[styles.initialText, { fontFamily: "PoppinsSemiBold" }]}
             >
               {data.name.split("")[0]}
             </Text>
           </View>
-          <Text style={[styles.cardText, { fontFamily: "Poppins" }]}>
-            {data.name.slice(0,20).replace(/\s+/g, '  ').trim()}
+          <Text
+            allowFontScaling={false}
+            style={[styles.cardText, { fontFamily: "Poppins" }]}
+          >
+            {data.name.slice(0, 20).replace(/\s+/g, "  ").trim()}
           </Text>
         </View>
         <View style={styles.buttons}>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     elevation: 1,
   },
- 
+
   cardText: {
     fontSize: 20,
   },
@@ -113,5 +113,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 15,
   },
-
 });

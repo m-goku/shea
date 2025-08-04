@@ -1,4 +1,5 @@
 import { ManageCard } from "@/components/ui/ManageList";
+import { PlainWrapper } from "@/components/ui/wrappers/PlainWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import { getAllFarmers } from "@/db/crud";
@@ -11,25 +12,22 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
-
-
 
 export default function HomeScreen() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState<Farmer[]>([]);
 
-    useFocusEffect(() => {
-      //LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-        const getData = async () => {
-          const farmer = await getAllFarmers();
-          setData(farmer);
-        };
-      getData()
-    });
+  useFocusEffect(() => {
+    //LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+    const getData = async () => {
+      const farmer = await getAllFarmers();
+      setData(farmer);
+    };
+    getData();
+  });
 
-  
   const filteredFarmers = data
     .filter(
       (farmer) =>
@@ -39,38 +37,41 @@ export default function HomeScreen() {
     .slice(0, 30)
     .sort((a, b) => a.name.localeCompare(b.name));
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-      }}
-    >
-      <View style={styles.searchView}>
-        <TextInput
-          style={styles.input}
-          placeholder="Search by name or community"
-          value={search}
-          onChangeText={setSearch}
-        />
-        <TouchableOpacity
-          style={styles.addButton}
-          onPress={() => router.push("/(tabs)/(admin)/add")}
-        >
-          <AntDesign name="adduser" size={30} color="white" />
-        </TouchableOpacity>
-      </View>
+    <PlainWrapper>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+        }}
+      >
+        <View style={styles.searchView}>
+          <TextInput
+            allowFontScaling={false}
+            style={styles.input}
+            placeholder="Search by name or community"
+            value={search}
+            onChangeText={setSearch}
+          />
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => router.push("/(tabs)/(admin)/add")}
+          >
+            <AntDesign name="adduser" size={30} color="white" />
+          </TouchableOpacity>
+        </View>
 
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ alignItems: "center" }}
-        data={filteredFarmers}
-        renderItem={(item) => <ManageCard data={item.item} />}
-        keyExtractor={(item) => item.id.toString()}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        windowSize={5}
-      />
-    </View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ alignItems: "center" }}
+          data={filteredFarmers}
+          renderItem={(item) => <ManageCard data={item.item} />}
+          keyExtractor={(item) => item.id.toString()}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+          windowSize={5}
+        />
+      </View>
+    </PlainWrapper>
   );
 }
 
@@ -85,8 +86,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 10,
     backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
-
 
   addText: {
     fontSize: 20,

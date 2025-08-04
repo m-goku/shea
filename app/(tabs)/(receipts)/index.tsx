@@ -2,6 +2,7 @@ import { openPDF } from "@/components/OpenPdf";
 import { ReceiptFile, listSavedReceipts } from "@/components/REceiptList";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
+import { PlainWrapper } from "@/components/ui/wrappers/PlainWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import React, { useEffect, useState } from "react";
@@ -51,47 +52,63 @@ export default function index() {
     .slice(0, 30);
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Search by name or community"
-        value={search}
-        onChangeText={setSearch}
-      />
+    <PlainWrapper>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search by name or community"
+          value={search}
+          onChangeText={setSearch}
+        />
 
-      {/* <FlatList
+        {/* <FlatList
         style={{ flex: 1 }}
         data={filteredFarmers}
         renderItem={(item) => <ListCard data={item.item} />}
       /> */}
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={filteredFarmers}
-        keyExtractor={(item) => item.uri}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => handleOpen(item.uri)}
-            style={styles.card}
-          >
-            <FontAwesome5 name="receipt" size={24} color={COLORS.green.dark} />
-            <Text style={[styles.name, { fontFamily: "Poppins" }]}>
-              {item.name}
-            </Text>
-          </TouchableOpacity>
-        )}
-        ListEmptyComponent={
-          <Text
-                     style={{
-                       fontFamily: "Poppins",
-                       fontSize: 20,
-                       color: COLORS.gray.deep,
-                     }}
-                   >
-                    You Have No Receipts 
-                   </Text>
-        }
-      />
-    </View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={filteredFarmers}
+          keyExtractor={(item) => item.uri}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => handleOpen(item.uri)}
+              style={styles.card}
+            >
+              <FontAwesome5
+                name="receipt"
+                size={24}
+                color={COLORS.green.dark}
+              />
+              <Text
+                allowFontScaling={false}
+                style={[styles.name, { fontFamily: "Poppins" }]}
+              >
+                {item.name}
+              </Text>
+            </TouchableOpacity>
+          )}
+          ListEmptyComponent={
+            <View
+              style={{
+                alignItems: "center",
+              }}
+            >
+              <Text
+                allowFontScaling={false}
+                style={{
+                  fontFamily: "Poppins",
+                  fontSize: 20,
+                  color: COLORS.gray.deep,
+                }}
+              >
+                You Have No Receipts
+              </Text>
+            </View>
+          }
+        />
+      </View>
+    </PlainWrapper>
   );
 }
 
@@ -117,14 +134,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   name: {
-    fontSize: 18,
-    fontWeight: "500",
+    fontSize: 16,
+    fontWeight: "bold",
   },
-  meta: { fontSize: 12, color: "#666" },
-  empty: { textAlign: "center", marginTop: 40, color: "#999" },
   container: {
-     flex: 1,
-        marginTop: StatusBar.currentHeight as number + 40,
-        margin: 10,
-  }
+    flex: 1,
+    marginTop: (StatusBar.currentHeight as number) + 40,
+    margin: 10,
+  },
 });

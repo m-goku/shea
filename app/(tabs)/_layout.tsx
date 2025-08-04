@@ -11,6 +11,7 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         animation: "none",
+        tabBarAllowFontScaling: false,
         tabBarActiveTintColor: COLORS.green.dark,
         tabBarStyle: Platform.select({
           ios: {

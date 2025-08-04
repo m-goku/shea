@@ -27,11 +27,17 @@ export const ListCard = ({ data }: { data: Farmer }) => {
       }
     >
       <View style={styles.initials}>
-        <Text style={[styles.initialText, { fontFamily: "PoppinsSemiBold" }]}>
+        <Text
+          allowFontScaling={false}
+          style={[styles.initialText, { fontFamily: "PoppinsSemiBold" }]}
+        >
           {data.name.split("")[0]}
         </Text>
       </View>
-      <Text style={[styles.cardText, { fontFamily: "Poppins" }]}>
+      <Text
+        allowFontScaling={false}
+        style={[styles.cardText, { fontFamily: "Poppins" }]}
+      >
         {data.name.replace(/\s+/g, "    ").trim()}
       </Text>
     </TouchableOpacity>
@@ -48,7 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 5,
     alignItems: "center",
-    elevation:1
+    elevation: 1,
   },
   cardText: {
     fontSize: 20,

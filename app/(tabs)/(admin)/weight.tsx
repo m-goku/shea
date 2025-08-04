@@ -1,15 +1,12 @@
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import React, { useEffect, useState } from "react";
-import {
-  Alert,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import WeightInput from "@/components/ui/textInputs/WeightInput";
+import LabelText from "@/components/ui/texts/LabelText";
+import ValueText from "@/components/ui/texts/ValueText";
+import { PlainWrapper } from "@/components/ui/wrappers/PlainWrapper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 
@@ -67,44 +64,34 @@ export default function weight() {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-      }}
-    >
-      <View style={styles.container2}>
-        <View style={[styles.kg, { gap: 30 }]}>
-          <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-            Price Per Kg (GH₵):
-          </Text>
-          <Text style={[styles.value, { fontFamily: "PoppinsSemiBold" }]}>
-            {price}
-          </Text>
-        </View>
-        <View style={[styles.kg, { marginTop: 20 }]}>
-          <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-            New Price (GH₵):
-          </Text>
-          <View style={styles.inputView}>
-            <TextInput
-              style={[styles.input, { fontFamily: "PoppinsSemiBold" }]}
-              keyboardType="numeric"
-              value={input}
-              onChangeText={handleChange}
-            />
+    <PlainWrapper>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+        }}
+      >
+        <View style={styles.container2}>
+          <View style={[styles.kg, { gap: 30 }]}>
+            <LabelText label="Price Per Kg (GH₵):" />
+            <ValueText value={price} />
           </View>
+          <View style={[styles.kg, { marginTop: 20 }]}>
+            <LabelText label="New Price (GH₵):" />
+            <WeightInput handleChange={handleChange} value={input} />
+          </View>
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.7}
+            onPress={() => handleSave()}
+          >
+            <Text allowFontScaling={false} style={styles.buttonText}>
+              Update
+            </Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          activeOpacity={0.7}
-          onPress={() => handleSave()}
-          // disabled={isSaving}
-        >
-          <Text style={styles.buttonText}>Update</Text>
-        </TouchableOpacity>
       </View>
-    </View>
+    </PlainWrapper>
   );
 }
 
@@ -128,8 +115,7 @@ const styles = StyleSheet.create({
     color: "black",
   },
   input: {
-    height: 50,
-    width: 130,
+    width: 100,
     backgroundColor: "white",
     fontSize: 25,
     marginLeft: 10,
@@ -137,8 +123,8 @@ const styles = StyleSheet.create({
     color: "black",
   },
   inputView: {
-    height: 60,
-    width: 150,
+    // height: 60,
+    width: 130,
     backgroundColor: "white",
     marginLeft: 20,
     borderRadius: 10,
@@ -164,6 +150,6 @@ const styles = StyleSheet.create({
     elevation: 0.5,
     justifyContent: "center",
     alignItems: "center",
-     backgroundColor: COLORS.green.dark,
+    backgroundColor: COLORS.green.dark,
   },
 });

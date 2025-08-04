@@ -1,17 +1,11 @@
-import { ScreenWrapper } from "@/components/ScreenWrapper";
-import { COLORS } from "@/constants/Colors";
-import { SCREEN } from "@/constants/Screen";
+import CreateButton from "@/components/ui/buttons/CreateButton";
+import FormInput from "@/components/ui/textInputs/FormInput";
+import { ScreenWrapper } from "@/components/ui/wrappers/ScreenWrapper";
 import { createFarmer } from "@/db/crud";
 import { router } from "expo-router";
 import { Formik, FormikHelpers } from "formik";
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as Yup from "yup";
 
 interface ProfileFormValues {
@@ -54,14 +48,10 @@ const CreateProfileForm: React.FC = () => {
 
     // console.log("Submitted:", prepared);
     await createFarmer(prepared);
-   
+
     actions.resetForm();
     router.navigate("/(tabs)/(admin)");
     router.navigate("/(tabs)/(home)");
-  };
-
-  const renderError = (touched?: boolean, error?: string) => {
-    return touched && error ? <Text style={styles.error}>{error}</Text> : null;
   };
 
   return (
@@ -83,88 +73,51 @@ const CreateProfileForm: React.FC = () => {
       }) => (
         <ScreenWrapper>
           <View style={styles.title}>
-            <Text style={styles.titleText}>Add Data</Text>
+            <Text allowFontScaling={false} style={styles.titleText}>
+              Add Data
+            </Text>
           </View>
           <View style={styles.container}>
             {/* Name */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>Name</Text>
-            <TextInput
-              placeholder="Name"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              onChangeText={handleChange("name")}
+            <FormInput
+              label="Name"
               onBlur={handleBlur("name")}
+              onChangeText={handleChange("name")}
               value={values.name}
             />
 
             {/* ID */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-              ID Number
-            </Text>
-            <TextInput
-              placeholder="ID"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              onChangeText={handleChange("nationalId")}
+            <FormInput
+              label="ID Number"
               onBlur={handleBlur("nationalId")}
+              onChangeText={handleChange("nationalId")}
               value={values.nationalId}
             />
 
             {/* Community */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-              Community
-            </Text>
-            <TextInput
-              placeholder="Community"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              onChangeText={handleChange("community")}
+            <FormInput
+              label="Community"
               onBlur={handleBlur("community")}
+              onChangeText={handleChange("community")}
               value={values.community}
             />
 
             {/* Prefinance */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-              Pre-Finance Amount
-            </Text>
-            <TextInput
-              placeholder="Prefinance"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              keyboardType="numeric"
-              onChangeText={handleChange("prefinance")}
+
+            <FormInput
+              numeric
+              label=" Pre-Finance Amount"
               onBlur={handleBlur("prefinance")}
+              onChangeText={handleChange("prefinance")}
               value={values.prefinance}
             />
 
-            {/* Balance */}
-            {/* <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-              Balance
-            </Text>
-            <TextInput
-              placeholder="Balance"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              keyboardType="numeric"
-              onChangeText={handleChange("balance")}
-              onBlur={handleBlur("balance")}
-              value={values.balance}
-            /> */}
-
-            {/* Submit */}
-
-            <TouchableOpacity
-              style={[
-                styles.button,
-                {
-                  backgroundColor: COLORS.green.dark,
-                },
-              ]}
-              activeOpacity={0.7}
+            <CreateButton
+              name="Add "
+              dirty={dirty}
+              isValid={isValid}
               onPress={() => handleSubmit()}
-              disabled={!isValid || !dirty}
-            >
-              <Text
-                style={[styles.buttonText, { fontFamily: "PoppinsSemiBold" }]}
-              >
-                Create
-              </Text>
-            </TouchableOpacity>
+            />
           </View>
         </ScreenWrapper>
       )}
@@ -180,38 +133,10 @@ const styles = StyleSheet.create({
   },
   title: {
     padding: 20,
-   
+    marginTop: 30,
   },
   titleText: {
-    fontSize : 25
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: COLORS.green.dark,
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    fontSize: 16,
-  },
-  error: {
-    color: "red",
-    fontSize: 14,
-  },
-  buttonText: {
-    fontSize: 20,
-    color: "white",
-  },
-  button: {
-    width: SCREEN.width * 0.85,
-    height: SCREEN.height * 0.05,
-    borderRadius: 25,
-    marginTop: 10,
-    elevation: 0.5,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  label: {
-    fontSize: 16,
-    color: COLORS.green.dark,
+    fontSize: 25,
   },
 });
 

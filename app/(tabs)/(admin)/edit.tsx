@@ -1,22 +1,19 @@
-import { ScreenWrapper } from "@/components/ScreenWrapper";
+import CreateButton from "@/components/ui/buttons/CreateButton";
+import FormInput from "@/components/ui/textInputs/FormInput";
+import { ScreenWrapper } from "@/components/ui/wrappers/ScreenWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import { updateFarmer } from "@/db/crud";
 import { router, useLocalSearchParams } from "expo-router";
 import { Formik, FormikHelpers } from "formik";
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as Yup from "yup";
 
 interface ProfileFormValues {
-  name: string;
   id: string;
+  name: string;
+  nationalId: string;
   community: string;
   prefinance: string;
   balance: string;
@@ -24,7 +21,7 @@ interface ProfileFormValues {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
-  id: Yup.string().required("ID is required"),
+  nationalId: Yup.string().required("ID is required"),
   community: Yup.string().required("Community is required"),
   prefinance: Yup.number()
     .transform((value, originalValue) => (originalValue === "" ? null : value))
@@ -37,9 +34,11 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateProfileForm: React.FC = () => {
-  const { id, name, community, preFinance, ballance } = useLocalSearchParams();
+  const { id, name, community, preFinance, ballance, nationalId } =
+    useLocalSearchParams();
   const data = {
     id: String(id),
+    nationalId: String(nationalId),
     name: String(name),
     community: String(community),
     preFinance: String(preFinance),
@@ -49,6 +48,7 @@ const CreateProfileForm: React.FC = () => {
   const initialValues: ProfileFormValues = {
     id: data.id,
     name: data.name,
+    nationalId: data.nationalId,
     community: data.community,
     prefinance: data.preFinance,
     balance: data.ballance,
@@ -64,14 +64,9 @@ const CreateProfileForm: React.FC = () => {
       balance: values.balance ? parseFloat(values.balance) : 0,
     };
 
-    console.log("Submitted:", prepared);
     await updateFarmer(data.id, prepared);
     actions.resetForm();
     router.push("/(tabs)/(admin)/list");
-  };
-
-  const renderError = (touched?: boolean, error?: string) => {
-    return touched && error ? <Text style={styles.error}>{error}</Text> : null;
   };
 
   return (
@@ -81,100 +76,63 @@ const CreateProfileForm: React.FC = () => {
       onSubmit={handleSubmit}
       validateOnMount
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-        isValid,
-        dirty,
-      }) => (
+      {({ handleChange, handleBlur, handleSubmit, values, isValid, dirty }) => (
         <ScreenWrapper>
-            <View style={styles.title}>
-                      <Text style={styles.titleText}>Add Data</Text>
-                    </View>
+          <View style={styles.title}>
+            <Text style={styles.titleText}>Add Data</Text>
+          </View>
           <View style={styles.container}>
             {/* Name */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>Name</Text>
-            <TextInput
-              placeholder="Name"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              onChangeText={handleChange("name")}
+
+            <FormInput
+              label="Name"
               onBlur={handleBlur("name")}
+              onChangeText={handleChange("name")}
               value={values.name}
             />
 
             {/* ID */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-              ID Number
-            </Text>
-            <TextInput
-              placeholder="ID"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              onChangeText={handleChange("id")}
-              onBlur={handleBlur("id")}
-              value={values.id}
+            <FormInput
+              label="ID Number"
+              onBlur={handleBlur("nationalId")}
+              onChangeText={handleChange("nationalId")}
+              value={values.nationalId}
             />
 
             {/* Community */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-              Community
-            </Text>
-            <TextInput
-              placeholder="Community"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              onChangeText={handleChange("community")}
+            <FormInput
+              label="Community"
               onBlur={handleBlur("community")}
+              onChangeText={handleChange("community")}
               value={values.community}
             />
 
             {/* Prefinance */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-              Pre-Finance Amount
-            </Text>
-            <TextInput
-              placeholder="Prefinance"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              keyboardType="numeric"
-              onChangeText={handleChange("prefinance")}
+
+            <FormInput
+              numeric
+              label=" Pre-Finance Amount"
               onBlur={handleBlur("prefinance")}
+              onChangeText={handleChange("prefinance")}
               value={values.prefinance}
             />
 
             {/* Balance */}
-            <Text style={[styles.label, { fontFamily: "Poppins" }]}>
-              Balance
-            </Text>
-            <TextInput
-              placeholder="Balance"
-              style={[styles.input, { fontFamily: "Poppins" }]}
-              keyboardType="numeric"
-              onChangeText={handleChange("balance")}
+            <FormInput
+              numeric
+              label=" Current Balance"
               onBlur={handleBlur("balance")}
+              onChangeText={handleChange("balance")}
               value={values.balance}
             />
 
             {/* Submit */}
-
-            <TouchableOpacity
-              style={[
-                styles.button,
-                {
-                   backgroundColor: COLORS.green.dark,
-                },
-              ]}
-              activeOpacity={0.7}
+            <CreateButton
+              name="Update"
+              dirty={dirty}
+              isValid={isValid}
               onPress={() => handleSubmit()}
-              disabled={!isValid || !dirty}
-            >
-              <Text
-                style={[styles.buttonText, { fontFamily: "PoppinsSemiBold" }]}
-              >
-                Update
-              </Text>
-            </TouchableOpacity>
+            />
           </View>
         </ScreenWrapper>
       )}
