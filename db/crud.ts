@@ -22,6 +22,15 @@ export const createFarmer = async (data: {
       farmer.community = data.community.replace(/\s+/g, " ").trim();
       farmer.prefinance = data.prefinance;
       farmer.balance = data.prefinance;
+      farmer.totalKgBrought = 0;
+      farmer.totalAmount = 0;
+      farmer.cropType = "";
+      farmer.farmSize = "";
+      farmer.inputSupplied = "";
+      farmer.farmLocationLat = 0;
+      farmer.farmLocationLng = 0;
+      farmer.farmLocationDescription = "";
+      farmer.repaymentStatus = "pending";
     });
   });
 };
@@ -49,6 +58,15 @@ export const updateFarmer = async (
     community: string;
     prefinance: number;
     balance: number;
+    total_kg_brought?: number;
+    total_amount?: number;
+    crop_type?: string;
+    farm_size?: string;
+    input_supplied?: string;
+    farm_location_lat?: number;
+    farm_location_lng?: number;
+    farm_location_description?: string;
+    repayment_status?: string;
   }>
 ) => {
   const farmer = await getFarmerById(id);
@@ -65,6 +83,25 @@ export const updateFarmer = async (
         f.prefinance = updatedFields.prefinance;
       if (updatedFields.balance !== undefined)
         f.balance = updatedFields.balance;
+
+      if (updatedFields.total_kg_brought !== undefined)
+        f.totalKgBrought = updatedFields.total_kg_brought;
+      if (updatedFields.total_amount !== undefined)
+        f.totalAmount = updatedFields.total_amount;
+      if (updatedFields.crop_type !== undefined)
+        f.cropType = updatedFields.crop_type;
+      if (updatedFields.farm_size !== undefined)
+        f.farmSize = updatedFields.farm_size;
+      if (updatedFields.input_supplied !== undefined)
+        f.inputSupplied = updatedFields.input_supplied;
+      if (updatedFields.farm_location_lat !== undefined)
+        f.farmLocationLat = updatedFields.farm_location_lat;
+      if (updatedFields.farm_location_lng !== undefined)
+        f.farmLocationLng = updatedFields.farm_location_lng;
+      if (updatedFields.farm_location_description !== undefined)
+        f.farmLocationDescription = updatedFields.farm_location_description;
+      if (updatedFields.repayment_status !== undefined)
+        f.repaymentStatus = updatedFields.repayment_status;
     });
   });
 };

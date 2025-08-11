@@ -12,7 +12,8 @@ export const ListCard = ({ data }: { data: Farmer }) => {
       activeOpacity={0.6}
       style={styles.card}
       key={data.id}
-      onPress={() =>
+      onPress={() => {
+        console.log(data);
         router.push({
           pathname: "/(tabs)/(home)/transaction",
           params: {
@@ -23,8 +24,8 @@ export const ListCard = ({ data }: { data: Farmer }) => {
             ballance: data.balance,
             nationalId: data.nationalId,
           },
-        })
-      }
+        });
+      }}
     >
       <View style={styles.initials}>
         <Text

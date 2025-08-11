@@ -1,6 +1,19 @@
 import { AlertModal } from "@/components/AlertModal";
+import { IP } from "@/constants/IP";
 import { synchronize } from "@nozbe/watermelondb/sync";
 import { Alert, StyleSheet } from "react-native";
+
+function sanitizeFarmer(farmer: any) {
+  const { id, _status, _changed, ...rest } = farmer;
+
+  return {
+    ...rest,
+    _id: id,
+    _status,
+    _changed,
+    updated_at: Date.now(),
+  };
+}
 
 export async function syncDatabase(database: any) {
   try {
@@ -11,7 +24,7 @@ export async function syncDatabase(database: any) {
         // console.log("HIT PULL")
         try {
           const response = await fetch(
-            `https://backend-hnp4.onrender.com/sync/pull?lastPulledAt=${
+            `http://${IP.address}:${IP.port}/sync/pull?lastPulledAt=${
               lastPulledAt ?? 0
             }`
           );
@@ -34,9 +47,9 @@ export async function syncDatabase(database: any) {
       pushChanges: async ({ changes, lastPulledAt }) => {
         // console.log("HIT PUSH");
         //backend-hnp4.onrender.com
-        https: try {
+        try {
           const response = await fetch(
-            `https://backend-hnp4.onrender.com/sync/push`,
+            `http://${IP.address}:${IP.port}/sync/push`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -54,7 +67,7 @@ export async function syncDatabase(database: any) {
         }
       },
 
-      // migrationsEnabledAtVersion: 1,
+      // migrationsEnabledAtVersion: 2,
     });
 
     console.log("✅ Sync successful");
