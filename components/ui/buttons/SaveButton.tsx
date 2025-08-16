@@ -8,7 +8,7 @@ export default function SaveButton({
   isSaving,
 }: {
   handleSave: any;
-  isSaving: boolean;
+  isSaving?: boolean;
 }) {
   return (
     <TouchableOpacity
@@ -32,8 +32,7 @@ export default function SaveButton({
 
 const styles = StyleSheet.create({
   buttonText: {
-    fontSize: 25,
-    fontWeight: "600",
+    fontSize: 18,
     color: "white",
   },
   button: {

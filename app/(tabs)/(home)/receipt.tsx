@@ -1,4 +1,5 @@
 import { generateAndSaveReceipt } from "@/components/GeneratePdf";
+import Header from "@/components/Header";
 import SaveButton from "@/components/ui/buttons/SaveButton";
 import LabelText from "@/components/ui/texts/LabelText";
 import ValueText from "@/components/ui/texts/ValueText";
@@ -7,8 +8,8 @@ import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
 import { getFarmerById } from "@/db/crud";
 import Farmer from "@/db/model";
-import { router, useLocalSearchParams } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 function List({ label, value }: { label: string; value: any }) {
@@ -21,7 +22,7 @@ function List({ label, value }: { label: string; value: any }) {
 }
 
 export default function Receipt() {
-  const { id, total, kilograms, payable } = useLocalSearchParams();
+  const { id, total, kilograms, payable, issuedBy } = useLocalSearchParams();
   const [farmer, setFarmer] = useState<Farmer | null>();
   const data = {
     id: String(id),
@@ -32,15 +33,16 @@ export default function Receipt() {
     kilograms: Number(kilograms),
     total: Number(total),
     payable: Number(payable),
+    issuedBy: String(issuedBy),
   };
 
   async function getFarmer() {
     const get = await getFarmerById(data.id);
     setFarmer(get);
   }
-  useEffect(() => {
+  useFocusEffect(() => {
     getFarmer();
-  }, [farmer]);
+  });
 
   const [isSaving, setIsSaving] = useState(false);
   const handleSaveReceipt = async () => {
@@ -54,6 +56,7 @@ export default function Receipt() {
   return (
     <PlainWrapper>
       <View style={styles.main}>
+        <Header title="Preview" />
         <View style={styles.container}>
           <Text
             allowFontScaling={false}
@@ -69,6 +72,7 @@ export default function Receipt() {
           <List label="Weight (Kg):" value={data.kilograms} />
           <List label="Total (GH₵):" value={data.total} />
           <List label="Amount Payable (GH₵):" value={data.payable} />
+          <List label="Issued By:" value={data.issuedBy} />
         </View>
         <SaveButton handleSave={handleSaveReceipt} isSaving={isSaving} />
       </View>
@@ -85,9 +89,10 @@ const styles = StyleSheet.create({
     padding: 15,
     borderWidth: 1,
     borderColor: COLORS.green.dark,
+    marginTop: 20,
   },
   main: {
-    flex: 1,
+    //flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },

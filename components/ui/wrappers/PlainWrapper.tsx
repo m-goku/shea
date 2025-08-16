@@ -3,7 +3,6 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  StatusBar,
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
@@ -17,9 +16,9 @@ export const PlainWrapper: FC<SW> = ({ children }) => {
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
-      keyboardVerticalOffset={
-        Platform.OS === "android" ? StatusBar.currentHeight || 0 : 0
-      }
+      // keyboardVerticalOffset={
+      //   Platform.OS === "android" ? StatusBar.currentHeight || 0 : 0
+      // }
     >
       <TouchableWithoutFeedback
         onPress={() => {

@@ -1,5 +1,5 @@
 import { SCREEN } from "@/constants/Screen";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
   Modal,
@@ -9,13 +9,16 @@ import {
   View,
 } from "react-native";
 
+import Header from "@/components/Header";
+import NameScreen from "@/components/ui/NameScreen";
 import { COLORS } from "@/constants/Colors";
+import { getFromLocalStore } from "@/db/asyncStore";
 import { database } from "@/db/db";
 import { syncDatabase } from "@/db/syncData";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 
 const LoadingModal = ({ loading }: { loading: boolean }) => {
   return (
@@ -38,6 +41,20 @@ const LoadingModal = ({ loading }: { loading: boolean }) => {
 
 export default function SettingsPage() {
   const [isLoading, setIsloading] = React.useState(false);
+
+  const [name, setName] = useState<string | null>(null);
+  const [checkingName, setCheckingName] = useState(true);
+
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        const n = await getFromLocalStore("NAME");
+        setName(typeof n === "string" ? n : "");
+        setCheckingName(false);
+        //console.log("Stored NAME:", n);
+      })();
+    }, [])
+  );
 
   async function handleSync() {
     setIsloading(true);
@@ -71,78 +88,67 @@ export default function SettingsPage() {
   // }
   return (
     <>
-      <LoadingModal loading={isLoading} />
-      <View style={styles.container}>
-        <View style={{ marginTop: 40 }}>
-          <TouchableOpacity
-            style={styles.options}
-            activeOpacity={0.8}
-            onPress={() => handleSync()}
-          >
-            <FontAwesome5 name="sync-alt" size={24} color={COLORS.green.dark} />
-            <Text
-              allowFontScaling={false}
-              style={[styles.text, { fontFamily: "Poppins" }]}
-            >
-              Sync with Database
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.options}
-            activeOpacity={0.8}
-            onPress={() => router.push("/(tabs)/(admin)/list")}
-          >
-            <Feather name="users" size={24} color={COLORS.green.dark} />
-            <Text
-              allowFontScaling={false}
-              style={[styles.text, { fontFamily: "Poppins" }]}
-            >
-              Manage Data
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.options}
-            activeOpacity={0.8}
-            onPress={() => router.push("/(tabs)/(admin)/weight")}
-          >
-            <FontAwesome6
-              name="weight-scale"
-              size={24}
-              color={COLORS.green.dark}
-            />
-            <Text
-              allowFontScaling={false}
-              style={[styles.text, { fontFamily: "Poppins" }]}
-            >
-              Set Weight (Kg)
-            </Text>
-          </TouchableOpacity>
-          {/* <TouchableOpacity
-            style={styles.options}
-            activeOpacity={0.8}
-            onPress={() => handleLoad()}
-          >
-            <Text
-              allowFontScaling={false}
-              style={[styles.text, { fontFamily: "Poppins" }]}
-            >
-              Load
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.options}
-            activeOpacity={0.8}
-            onPress={() => handleDelete()}
-          >
-            <Text
-              allowFontScaling={false}
-              style={[styles.text, { fontFamily: "Poppins" }]}
-            >
-              Delete
-            </Text>
-          </TouchableOpacity> */}
-        </View>
-      </View>
+      {typeof name === "string" && name.trim() !== "" ? (
+        <>
+          <LoadingModal loading={isLoading} />
+          <Header title="Admin" />
+          <View style={styles.container}>
+            <View>
+              <TouchableOpacity
+                style={styles.options}
+                activeOpacity={0.8}
+                onPress={() => handleSync()}
+              >
+                <FontAwesome5
+                  name="sync-alt"
+                  size={24}
+                  color={COLORS.green.dark}
+                />
+                <Text
+                  allowFontScaling={false}
+                  style={[styles.text, { fontFamily: "Poppins" }]}
+                >
+                  Sync with Database
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.options}
+                activeOpacity={0.8}
+                onPress={() => router.push("/(tabs)/(admin)/list")}
+              >
+                <Feather name="users" size={24} color={COLORS.green.dark} />
+                <Text
+                  allowFontScaling={false}
+                  style={[styles.text, { fontFamily: "Poppins" }]}
+                >
+                  Manage Data
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.options}
+                activeOpacity={0.8}
+                onPress={() => router.push("/(tabs)/(admin)/weight")}
+              >
+                <FontAwesome6
+                  name="weight-scale"
+                  size={24}
+                  color={COLORS.green.dark}
+                />
+                <Text
+                  allowFontScaling={false}
+                  style={[styles.text, { fontFamily: "Poppins" }]}
+                >
+                  Set Weight (Kg)
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </>
+      ) : (
+        <NameScreen />
+      )}
     </>
   );
 }
@@ -151,22 +157,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    marginTop: 50,
+    marginTop: 10,
   },
   options: {
     flexDirection: "row",
     width: SCREEN.width * 0.9,
-    height: 70,
+    height: SCREEN.height * 0.08,
     backgroundColor: "white",
     alignItems: "center",
     gap: 20,
     paddingHorizontal: 15,
-    marginVertical: 10,
+    marginVertical: 5,
     borderRadius: 10,
     elevation: 1,
   },
   text: {
-    fontSize: 20,
+    fontSize: 16,
   },
   modal: {
     flex: 1,

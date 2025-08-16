@@ -3,22 +3,25 @@ import { SCREEN } from "@/constants/Screen";
 import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import Header from "@/components/Header";
 import WeightInput from "@/components/ui/textInputs/WeightInput";
 import LabelText from "@/components/ui/texts/LabelText";
 import ValueText from "@/components/ui/texts/ValueText";
 import { PlainWrapper } from "@/components/ui/wrappers/PlainWrapper";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getFromLocalStore, saveToLocalStore } from "@/db/asyncStore";
 import { router } from "expo-router";
 
 export default function weight() {
   const [input, setInput] = useState("");
   const [price, setPrice] = useState(0);
 
-  async function handleGet() {
-    const num = await getNumber();
+  const STORAGE_KEY = "MY_NUMBER_VALUE";
 
-    if (!isNaN(num)) {
-      setPrice(num); // Replace this with your calculation
+  async function handleGet() {
+    const num = await getFromLocalStore(STORAGE_KEY);
+
+    if (!isNaN(Number(num))) {
+      setPrice(Number(num)); // Replace this with your calculation
     } else {
       setPrice(0);
     }
@@ -30,7 +33,7 @@ export default function weight() {
 
   async function handleSave() {
     try {
-      await saveNumber(parseFloat(input));
+      await saveToLocalStore(STORAGE_KEY, parseFloat(input));
     } finally {
       Alert.alert("Saved", "Price has been updated!", [
         { text: "OK", onPress: () => router.back() },
@@ -42,27 +45,6 @@ export default function weight() {
     handleGet();
   }, [input]);
 
-  const STORAGE_KEY = "MY_NUMBER_VALUE";
-
-  const saveNumber = async (value: number) => {
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, value.toString());
-      console.log("saved to storage");
-    } catch (error) {
-      console.error("Failed to save number:", error);
-    }
-  };
-
-  const getNumber = async (): Promise<number> => {
-    try {
-      const value = await AsyncStorage.getItem(STORAGE_KEY);
-      return value ? parseFloat(value) : 0;
-    } catch (error) {
-      console.error("Failed to get number:", error);
-      return 0;
-    }
-  };
-
   return (
     <PlainWrapper>
       <View
@@ -71,6 +53,7 @@ export default function weight() {
           alignItems: "center",
         }}
       >
+        <Header allowBack title="Set Weight" />
         <View style={styles.container2}>
           <View style={[styles.kg, { gap: 30 }]}>
             <LabelText label="Price Per Kg (GH₵):" />
@@ -101,7 +84,7 @@ const styles = StyleSheet.create({
     //height: SCREEN.height * 0.2,
     backgroundColor: COLORS.gray.light,
     borderRadius: 10,
-    marginTop: 150,
+    marginTop: 30,
     elevation: 1,
     padding: 25,
     alignItems: "center",
@@ -138,8 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   buttonText: {
-    fontSize: 25,
-    fontWeight: "600",
+    fontSize: 18,
     color: "white",
   },
   button: {

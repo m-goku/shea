@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 
-export default function ValueText({
+export default function StatusText({
   value,
   label,
 }: {
@@ -14,7 +14,12 @@ export default function ValueText({
       style={[
         styles.value,
         {
-          color: label == "Balance (GH₵):" ? "red" : "black",
+          color:
+            value == "pending"
+              ? "red"
+              : value == "progress"
+              ? "orange"
+              : "green",
           fontFamily: "PoppinsSemiBold",
         },
       ]}

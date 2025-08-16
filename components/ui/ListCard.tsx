@@ -13,7 +13,7 @@ export const ListCard = ({ data }: { data: Farmer }) => {
       style={styles.card}
       key={data.id}
       onPress={() => {
-        console.log(data);
+        //console.log(data);
         router.push({
           pathname: "/(tabs)/(home)/transaction",
           params: {
@@ -21,8 +21,11 @@ export const ListCard = ({ data }: { data: Farmer }) => {
             name: data.name,
             community: data.community,
             preFinance: data.prefinance,
-            ballance: data.balance,
+            balance: data.balance,
             nationalId: data.nationalId,
+            repaymentStatus: data.repaymentStatus,
+            totalKgBrought: data.totalKgBrought,
+            totalAmount: data.totalAmount,
           },
         });
       }}
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   cardText: {
-    fontSize: 20,
+    fontSize: 18,
   },
   initials: {
     height: 40,
@@ -70,6 +73,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   initialText: {
-    fontSize: 20,
+    fontSize: 18,
   },
 });

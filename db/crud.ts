@@ -58,15 +58,15 @@ export const updateFarmer = async (
     community: string;
     prefinance: number;
     balance: number;
-    total_kg_brought?: number;
-    total_amount?: number;
-    crop_type?: string;
-    farm_size?: string;
-    input_supplied?: string;
-    farm_location_lat?: number;
-    farm_location_lng?: number;
-    farm_location_description?: string;
-    repayment_status?: string;
+    totalKgBrought?: number;
+    totalAmount?: number;
+    cropType?: string;
+    farmSize?: string;
+    inputSupplied?: string;
+    farmLocationLat?: number;
+    farmLocationLng?: number;
+    farmLocationDescription?: string;
+    repaymentStatus?: string;
   }>
 ) => {
   const farmer = await getFarmerById(id);
@@ -84,24 +84,24 @@ export const updateFarmer = async (
       if (updatedFields.balance !== undefined)
         f.balance = updatedFields.balance;
 
-      if (updatedFields.total_kg_brought !== undefined)
-        f.totalKgBrought = updatedFields.total_kg_brought;
-      if (updatedFields.total_amount !== undefined)
-        f.totalAmount = updatedFields.total_amount;
-      if (updatedFields.crop_type !== undefined)
-        f.cropType = updatedFields.crop_type;
-      if (updatedFields.farm_size !== undefined)
-        f.farmSize = updatedFields.farm_size;
-      if (updatedFields.input_supplied !== undefined)
-        f.inputSupplied = updatedFields.input_supplied;
-      if (updatedFields.farm_location_lat !== undefined)
-        f.farmLocationLat = updatedFields.farm_location_lat;
-      if (updatedFields.farm_location_lng !== undefined)
-        f.farmLocationLng = updatedFields.farm_location_lng;
-      if (updatedFields.farm_location_description !== undefined)
-        f.farmLocationDescription = updatedFields.farm_location_description;
-      if (updatedFields.repayment_status !== undefined)
-        f.repaymentStatus = updatedFields.repayment_status;
+      if (updatedFields.totalKgBrought !== undefined)
+        f.totalKgBrought = updatedFields.totalKgBrought;
+      if (updatedFields.totalAmount !== undefined)
+        f.totalAmount = updatedFields.totalAmount;
+      if (updatedFields.cropType !== undefined)
+        f.cropType = updatedFields.cropType;
+      if (updatedFields.farmSize !== undefined)
+        f.farmSize = updatedFields.farmSize;
+      if (updatedFields.inputSupplied !== undefined)
+        f.inputSupplied = updatedFields.inputSupplied;
+      if (updatedFields.farmLocationLat !== undefined)
+        f.farmLocationLat = updatedFields.farmLocationLat;
+      if (updatedFields.farmLocationLng !== undefined)
+        f.farmLocationLng = updatedFields.farmLocationLng;
+      if (updatedFields.farmLocationDescription !== undefined)
+        f.farmLocationDescription = updatedFields.farmLocationDescription;
+      if (updatedFields.repaymentStatus !== undefined)
+        f.repaymentStatus = updatedFields.repaymentStatus;
     });
   });
 };

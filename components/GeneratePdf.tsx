@@ -12,6 +12,7 @@ export interface ReceiptData {
   total: number;
   date?: string;
   payable: number;
+  issuedBy: string;
 }
 
 export async function generateAndSaveReceipt(
@@ -26,6 +27,7 @@ export async function generateAndSaveReceipt(
     kilograms,
     total,
     payable,
+    issuedBy,
     date = new Date().toLocaleDateString(),
   } = data;
 
@@ -109,6 +111,7 @@ export async function generateAndSaveReceipt(
         <div class="row"><div class="label">Amount Payable (GH₵):</div><div class="value">${payable.toFixed(
           2
         )}</div></div>
+        <div class="row"><div class="label">Issued By:</div><div class="value">${issuedBy}</div></div>
       </div>
 
       <div class="footer">Thank you for your business!</div>
@@ -129,7 +132,7 @@ export async function generateAndSaveReceipt(
   }
 
   // 4. Move the file to that folder with a descriptive name
-  
+
   const randomNumber = Math.floor(10000 + Math.random() * 90000); // 5-digit random number
   const currentDate = new Date().toISOString().split("T")[0]; // YYYY-MM-DD format
 

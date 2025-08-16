@@ -2,6 +2,7 @@ import { openPDF } from "@/components/OpenPdf";
 import { ReceiptFile, listSavedReceipts } from "@/components/REceiptList";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
+import Header from "@/components/Header";
 import { PlainWrapper } from "@/components/ui/wrappers/PlainWrapper";
 import { COLORS } from "@/constants/Colors";
 import { SCREEN } from "@/constants/Screen";
@@ -10,7 +11,6 @@ import {
   Alert,
   FlatList,
   LogBox,
-  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -45,17 +45,16 @@ export default function index() {
     }
   };
 
-  const filteredFarmers = receipts
-    .filter((farmer) =>
-      farmer.name.toLowerCase().includes(search.toLowerCase())
-    )
-    .slice(0, 30);
+  const filteredFarmers = receipts.filter((farmer) =>
+    farmer.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <PlainWrapper>
       <View style={styles.container}>
+        <Header title="Receipts" />
         <TextInput
-          style={styles.input}
+          style={[styles.input, { fontFamily: "Poppins" }]}
           placeholder="Search by name or community"
           value={search}
           onChangeText={setSearch}
@@ -119,16 +118,17 @@ const styles = StyleSheet.create({
     borderColor: COLORS.green.dark,
     borderWidth: 2,
     borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 20,
+    //paddingHorizontal: 15,
+    marginBottom: 10,
     backgroundColor: "white",
+    marginTop: 5,
   },
 
   card: {
     alignItems: "center",
     gap: 15,
     flexDirection: "row",
-    padding: 12,
+    padding: 10,
     backgroundColor: "#f2f2f2",
     marginBottom: 10,
     borderRadius: 8,
@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: (StatusBar.currentHeight as number) + 40,
-    margin: 10,
+    alignItems: "center",
   },
 });

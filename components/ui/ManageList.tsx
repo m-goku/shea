@@ -7,7 +7,7 @@ import { deleteFarmer } from "@/db/crud";
 import Farmer from "@/db/model";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { router } from "expo-router";
-import { AlertModal } from "../AlertModal";
+import { AlertModal } from "./wrappers/AlertModal";
 
 export const ManageCard = ({ data }: { data: Farmer }) => {
   async function handleDelete(id: string) {
@@ -61,7 +61,7 @@ export const ManageCard = ({ data }: { data: Farmer }) => {
           >
             <AntDesign name="edit" size={24} color="green" />
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => {
               AlertModal({
                 title: "Delete",
@@ -72,7 +72,7 @@ export const ManageCard = ({ data }: { data: Farmer }) => {
             }}
           >
             <AntDesign name="delete" size={24} color="red" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
 
   cardText: {
-    fontSize: 20,
+    fontSize: 18,
   },
   initials: {
     height: 40,
@@ -112,5 +112,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 15,
+    marginRight: 15,
   },
 });

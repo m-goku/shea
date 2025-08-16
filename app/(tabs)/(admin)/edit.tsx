@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import CreateButton from "@/components/ui/buttons/CreateButton";
 import FormInput from "@/components/ui/textInputs/FormInput";
 import { ScreenWrapper } from "@/components/ui/wrappers/ScreenWrapper";
@@ -7,7 +8,7 @@ import { updateFarmer } from "@/db/crud";
 import { router, useLocalSearchParams } from "expo-router";
 import { Formik, FormikHelpers } from "formik";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 
 interface ProfileFormValues {
@@ -65,8 +66,16 @@ const CreateProfileForm: React.FC = () => {
     };
 
     await updateFarmer(data.id, prepared);
-    actions.resetForm();
-    router.push("/(tabs)/(admin)/list");
+
+    Alert.alert("Updated", "Data Updated Successfully ", [
+      {
+        text: "OK",
+        onPress: () => {
+          actions.resetForm();
+          router.push("/(tabs)/(admin)/list");
+        },
+      },
+    ]);
   };
 
   return (
@@ -77,64 +86,67 @@ const CreateProfileForm: React.FC = () => {
       validateOnMount
     >
       {({ handleChange, handleBlur, handleSubmit, values, isValid, dirty }) => (
-        <ScreenWrapper>
-          <View style={styles.title}>
+        <>
+          <Header allowBack title="Edit Data" />
+          <ScreenWrapper>
+            {/* <View style={styles.title}>
             <Text style={styles.titleText}>Add Data</Text>
-          </View>
-          <View style={styles.container}>
-            {/* Name */}
+          </View> */}
+            <View style={styles.container}>
+              {/* Name */}
 
-            <FormInput
-              label="Name"
-              onBlur={handleBlur("name")}
-              onChangeText={handleChange("name")}
-              value={values.name}
-            />
+              <FormInput
+                label="Name"
+                onBlur={handleBlur("name")}
+                onChangeText={handleChange("name")}
+                value={values.name}
+              />
 
-            {/* ID */}
-            <FormInput
-              label="ID Number"
-              onBlur={handleBlur("nationalId")}
-              onChangeText={handleChange("nationalId")}
-              value={values.nationalId}
-            />
+              {/* ID */}
+              <FormInput
+                label="ID Number"
+                onBlur={handleBlur("nationalId")}
+                onChangeText={handleChange("nationalId")}
+                value={values.nationalId}
+              />
 
-            {/* Community */}
-            <FormInput
-              label="Community"
-              onBlur={handleBlur("community")}
-              onChangeText={handleChange("community")}
-              value={values.community}
-            />
+              {/* Community */}
+              <FormInput
+                label="Community"
+                onBlur={handleBlur("community")}
+                onChangeText={handleChange("community")}
+                value={values.community}
+              />
 
-            {/* Prefinance */}
+              {/* Prefinance */}
 
-            <FormInput
-              numeric
-              label=" Pre-Finance Amount"
-              onBlur={handleBlur("prefinance")}
-              onChangeText={handleChange("prefinance")}
-              value={values.prefinance}
-            />
+              <FormInput
+                numeric
+                label=" Pre-Finance Amount"
+                onBlur={handleBlur("prefinance")}
+                onChangeText={handleChange("prefinance")}
+                value={values.prefinance}
+              />
 
-            {/* Balance */}
-            <FormInput
-              numeric
-              label=" Current Balance"
-              onBlur={handleBlur("balance")}
-              onChangeText={handleChange("balance")}
-              value={values.balance}
-            />
+              {/* Balance */}
+              <FormInput
+                numeric
+                label=" Current Balance"
+                onBlur={handleBlur("balance")}
+                onChangeText={handleChange("balance")}
+                value={values.balance}
+              />
 
-            {/* Submit */}
-            <CreateButton
-              name="Update"
-              dirty={dirty}
-              isValid={isValid}
-              onPress={() => handleSubmit()}
-            />
-          </View>
-        </ScreenWrapper>
+              {/* Submit */}
+              <CreateButton
+                name="Update"
+                dirty={dirty}
+                isValid={isValid}
+                onPress={() => handleSubmit()}
+              />
+            </View>
+          </ScreenWrapper>
+        </>
       )}
     </Formik>
   );
@@ -142,7 +154,7 @@ const CreateProfileForm: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // marginTop: 20,
+    marginTop: 20,
     padding: 20,
     gap: 10,
   },

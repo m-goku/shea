@@ -14,7 +14,7 @@ export default function LabelText({ label }: { label: string }) {
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 20,
+    fontSize: 16,
     color: "black",
   },
 });

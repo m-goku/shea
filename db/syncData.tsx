@@ -1,7 +1,7 @@
-import { AlertModal } from "@/components/AlertModal";
-import { IP } from "@/constants/IP";
+import { AlertModal } from "@/components/ui/wrappers/AlertModal";
 import { synchronize } from "@nozbe/watermelondb/sync";
 import { Alert, StyleSheet } from "react-native";
+import { getFromLocalStore } from "./asyncStore";
 
 function sanitizeFarmer(farmer: any) {
   const { id, _status, _changed, ...rest } = farmer;
@@ -16,6 +16,8 @@ function sanitizeFarmer(farmer: any) {
 }
 
 export async function syncDatabase(database: any) {
+  const n = await getFromLocalStore("NAME");
+  const name = String(n);
   try {
     await synchronize({
       database,
@@ -24,7 +26,7 @@ export async function syncDatabase(database: any) {
         // console.log("HIT PULL")
         try {
           const response = await fetch(
-            `http://${IP.address}:${IP.port}/sync/pull?lastPulledAt=${
+            `https://backend-hnp4.onrender.com/sync/pull?lastPulledAt=${
               lastPulledAt ?? 0
             }`
           );
@@ -49,10 +51,13 @@ export async function syncDatabase(database: any) {
         //backend-hnp4.onrender.com
         try {
           const response = await fetch(
-            `http://${IP.address}:${IP.port}/sync/push`,
+            `https://backend-hnp4.onrender.com/sync/push`,
             {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: name,
+              },
               body: JSON.stringify({ changes, lastPulledAt }),
             }
           );

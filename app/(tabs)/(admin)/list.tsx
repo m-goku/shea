@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import { ManageCard } from "@/components/ui/ManageList";
 import { PlainWrapper } from "@/components/ui/wrappers/PlainWrapper";
 import { COLORS } from "@/constants/Colors";
@@ -44,6 +45,7 @@ export default function HomeScreen() {
           alignItems: "center",
         }}
       >
+        <Header allowBack title="Manage Data" />
         <View style={styles.searchView}>
           <TextInput
             allowFontScaling={false}
@@ -108,6 +110,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
     alignItems: "center",
-    marginTop: 40,
+    marginTop: 10,
   },
 });

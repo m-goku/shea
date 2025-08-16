@@ -4,19 +4,24 @@ import { updateFarmer } from "@/db/crud";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { AlertModal } from "../AlertModal";
+import { AlertModal } from "./wrappers/AlertModal";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getFromLocalStore } from "@/db/asyncStore";
 import LargeButton from "./buttons/LargeButton";
 import WeightInput from "./textInputs/WeightInput";
 import LabelText from "./texts/LabelText";
+import StatusText from "./texts/StatusText";
 import ValueText from "./texts/ValueText";
 
 function List({ label, value }: { label: string; value: any }) {
   return (
     <View style={styles.list}>
       <LabelText label={label} />
-      <ValueText label={label} value={value} />
+      {label == "Re-Payment Status:" ? (
+        <StatusText value={value} />
+      ) : (
+        <ValueText label={label} value={value} />
+      )}
     </View>
   );
 }
@@ -27,51 +32,47 @@ export default function DetailsCard({
   nationalId,
   community,
   preFinance,
-  ballance,
-}: {
+  balance,
+  totalAmount,
+  totalKgBrought,
+  repaymentStatus,
+}: //,
+{
   id: string;
   name: string;
   nationalId: string;
   community: string;
   preFinance: number;
-  ballance: number;
+  balance: number;
+  totalAmount: number;
+  totalKgBrought: number;
+  repaymentStatus: string;
 }) {
   const [input, setInput] = useState("");
   const [total, setTotal] = useState(0);
   const [price, setPrice] = useState(0);
-
-  async function handleGet() {
-    const num = await getNumber();
-
-    if (!isNaN(num)) {
-      setPrice(num);
-    } else {
-      setPrice(0);
-    }
-  }
+  const [issuedBy, setIssuedBy] = useState("");
 
   const STORAGE_KEY = "MY_NUMBER_VALUE";
+  async function handleGet() {
+    const num = await getFromLocalStore(STORAGE_KEY);
+    const n = await getFromLocalStore("NAME");
 
-  const getNumber = async (): Promise<number> => {
-    try {
-      const value = await AsyncStorage.getItem(STORAGE_KEY);
-      return value ? parseFloat(value) : 0;
-    } catch (error) {
-      console.error("Failed to get number:", error);
-      return 0;
-    }
-  };
+    const numValue = Number(num);
+    setPrice(!isNaN(numValue) ? numValue : 0);
+    setIssuedBy(typeof n === "string" ? n : "");
+  }
 
   useEffect(() => {
     handleGet();
-  }, [price]);
+  }, []);
 
   const handleChange = (value: string) => {
     setInput(value);
 
     const number = parseFloat(value);
-    if (!isNaN(number)) {
-      setTotal(number * price); // Replace this with your calculation
+    if (!isNaN(number) && !isNaN(price)) {
+      setTotal(number * price);
     } else {
       setTotal(0);
     }
@@ -82,7 +83,10 @@ export default function DetailsCard({
       name: name,
       community: community,
       prefinance: preFinance,
-      balance: ballance >= total ? ballance - total : 0,
+      balance: balance >= total ? balance - total : 0,
+      repaymentStatus: balance == preFinance ? "pending" : "paid",
+      totalAmount: totalAmount + total,
+      totalKgBrought: totalKgBrought + Number(input),
     };
 
     await updateFarmer(id, update);
@@ -93,7 +97,8 @@ export default function DetailsCard({
         id: id,
         kilograms: input,
         total: total,
-        payable: ballance < total ? total - ballance : 0,
+        payable: balance < total ? total - balance : 0,
+        issuedBy: issuedBy,
       },
     });
   }
@@ -109,6 +114,7 @@ export default function DetailsCard({
               {name.replace(/\s+/g, "  ").trim()}
             </Text>
           </View>
+
           <List label="User ID:" value={id} />
           <List label="National ID:" value={nationalId} />
           <List
@@ -116,7 +122,8 @@ export default function DetailsCard({
             value={community.slice(0, 15).replace(/\s+/g, " ").trim()}
           />
           <List label="Prefinance (GH₵):" value={preFinance} />
-          <List label="Balance (GH₵):" value={ballance} />
+          {/* <List label="Re-Payment Status:" value={repaymentStatus} /> */}
+          <List label="Balance (GH₵):" value={balance} />
         </View>
       </View>
 
@@ -151,7 +158,7 @@ const styles = StyleSheet.create({
     width: SCREEN.width * 0.9,
     backgroundColor: "white",
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 15,
     elevation: 1,
     borderWidth: 1,
     borderColor: COLORS.green.dark,
@@ -174,8 +181,8 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   name: {
-    marginTop: 10,
-    fontSize: 25,
+    marginTop: 5,
+    fontSize: 20,
     color: "black",
   },
   detailsContainer: {
@@ -185,7 +192,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 5,
     borderColor: COLORS.gray.extraDeep,
   },
   kg: {

@@ -9,9 +9,9 @@ export default function FormInput({
   value,
   numeric,
 }: {
-  label: string;
+  label?: string;
   onChangeText: any;
-  onBlur: any;
+  onBlur?: any;
   value: string;
   numeric?: boolean;
 }) {

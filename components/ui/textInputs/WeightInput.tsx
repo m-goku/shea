@@ -14,7 +14,7 @@ export default function WeightInput({
       <TextInput
         allowFontScaling={false}
         style={[styles.input, { fontFamily: "PoppinsSemiBold" }]}
-        keyboardType="numeric"
+        //keyboardType="numeric"
         value={value}
         onChangeText={handleChange}
       />
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     // height: 50,
     width: 100,
     backgroundColor: COLORS.gray.extraLight,
-    fontSize: 25,
+    fontSize: 20,
     marginLeft: 10,
     borderRadius: 10,
     color: "black",

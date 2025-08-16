@@ -38,7 +38,7 @@ export default function CreateButton({
 
 const styles = StyleSheet.create({
   buttonText: {
-    fontSize: 20,
+    fontSize: 18,
     color: "white",
   },
   button: {

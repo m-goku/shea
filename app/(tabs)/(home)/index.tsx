@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 
+import Header from "@/components/Header";
 import { ListCard } from "@/components/ui/ListCard";
 import { PlainWrapper } from "@/components/ui/wrappers/PlainWrapper";
 import { COLORS } from "@/constants/Colors";
@@ -67,6 +68,7 @@ export default function HomeScreen() {
           backgroundColor: COLORS.gray.extraLight,
         }}
       >
+        <Header title="Home" />
         <TextInput
           allowFontScaling={false}
           style={styles.input}
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 15,
     marginBottom: 20,
-    marginTop: 60,
+    marginTop: 5,
     backgroundColor: "white",
   },
 });
